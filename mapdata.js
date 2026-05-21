@@ -20,10 +20,50 @@ var simplemaps_countrymap_mapdata = {
         url_new_tab: "no"
     },
     state_specific: {
-        INAP: { name: "Andhra Pradesh", description: "Coastal Beauty & Temples", color: "#f4c542", hover_color: "#ffdb70", url: "destinations.html?state=andhra pradesh", inactive: "no" },
-        INKA: { name: "Karnataka", description: "Heritage & Nature", color: "#20a77c", hover_color: "#38c497", url: "destinations.html?state=karnataka", inactive: "no" },
-        INKL: { name: "Kerala", description: "God’s Own Country", color: "#1f9d7b", hover_color: "#4bc7a0", url: "destinations.html?state=kerala", inactive: "no" },
-        INTG: { name: "Telangana", description: "Modern Cities & Forts", color: "#8f4aac", hover_color: "#ab6cd1", url: "destinations.html?state=telangana", inactive: "no" },
-        INTN: { name: "Tamil Nadu", description: "Land of Temples", color: "#d94c4c", hover_color: "#e56f6f", url: "destinations.html?state=tamil nadu", inactive: "no" }
+
+        INAP: {
+            name: "Andhra Pradesh",
+            description: "Coastal Beauty & Temples",
+            color: "#f59e0b",
+            hover_color: "#fbbf24",
+            url: "destinations.html?state=andhra pradesh",
+            inactive: "no"
+        },
+
+        INKA: {
+            name: "Karnataka",
+            description: "Heritage & Nature",
+            color: "#10b981",
+            hover_color: "#34d399",
+            url: "destinations.html?state=karnataka",
+            inactive: "no"
+        },
+
+        INKL: {
+            name: "Kerala",
+            description: "God’s Own Country",
+            color: "#22c55e",
+            hover_color: "#4ade80",
+            url: "destinations.html?state=kerala",
+            inactive: "no"
+        },
+
+        INTG: {
+            name: "Telangana",
+            description: "Modern Cities & Forts",
+            color: "#a855f7",
+            hover_color: "#c084fc",
+            url: "destinations.html?state=telangana",
+            inactive: "no"
+        },
+
+        INTN: {
+            name: "Tamil Nadu",
+            description: "Land of Temples",
+            color: "#ef4444",
+            hover_color: "#f87171",
+            url: "destinations.html?state=tamil nadu",
+            inactive: "no"
+        }
     }
 };
