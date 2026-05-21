@@ -22,14 +22,16 @@
             color: #1e2a3e;
         }
 
+        /* Navbar */
         .navbar {
-            background: rgba(15, 23, 42, 0.96);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(12px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 2000;
+            transition: all 0.3s;
         }
 
         .navbar-brand {
@@ -44,6 +46,7 @@
         .nav-link {
             color: #e2e8f0 !important;
             font-weight: 600;
+            transition: all 0.3s;
             border-radius: 40px;
             padding: 0.5rem 1rem !important;
         }
@@ -54,27 +57,66 @@
             color: #ffb347 !important;
         }
 
+        /* Hero Section with Video Background */
         .hero {
-            min-height: 85vh;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(0, 0, 0, 0.7)), url('https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg');
-            background-size: cover;
-            background-position: center;
+            position: relative;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
+            overflow: hidden;
         }
 
-        .hero h1 {
+        /* Video Background */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* Dark Overlay for better text readability */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.4));
+            z-index: 1;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-content h1 {
             font-size: 4rem;
             font-weight: 800;
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, #fff, #ffb347);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Buttons */
         .btn-primary {
             background: linear-gradient(135deg, #d41e3c, #ff6b35);
             border: none;
@@ -89,6 +131,20 @@
             box-shadow: 0 10px 25px rgba(212, 30, 60, 0.4);
         }
 
+        .btn-outline-light {
+            border-radius: 50px;
+            padding: 12px 32px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-light:hover {
+            background: white;
+            color: #d41e3c;
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
         .section {
             padding: 80px 0;
         }
@@ -98,6 +154,7 @@
             font-weight: 800;
             text-align: center;
             margin-bottom: 15px;
+            color: #1e2a3e;
             position: relative;
         }
 
@@ -117,8 +174,10 @@
             text-align: center;
             color: #64748b;
             margin-bottom: 50px;
+            font-size: 1.1rem;
         }
 
+        /* State Cards */
         .state-card {
             background: white;
             border-radius: 24px;
@@ -170,11 +229,13 @@
             font-weight: 600;
         }
 
+        /* Map Section */
         .map-section {
             background: #f1f5f9;
             padding: 60px 0;
         }
 
+        /* Footer */
         footer {
             background: #0f1a24;
             color: #94a3b8;
@@ -183,14 +244,37 @@
             margin-top: 60px;
         }
 
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
+            .hero-content h1 {
                 font-size: 2rem;
             }
 
             .section-title {
                 font-size: 1.8rem;
             }
+
+            .navbar-brand {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Video loading fallback */
+        .hero-video {
+            background: linear-gradient(135deg, #1a2a3a, #0f1a24);
         }
     </style>
 </head>
@@ -210,15 +294,26 @@
                     <li class="nav-item"><a class="nav-link" href="tourpackages.html">Tour Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="openTripPlanner()">Trip Planner</a></li>
                     <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
                 </ul>
             </div>
-        </div>1
+        </div>
     </nav>
 
+    <!-- Hero Section with Your Video Background -->
     <section class="hero">
-        <div class="container">
-            <h1>Discover the Soul of South India</h1>
+        <!-- YOUR VIDEO - Place your video file in assets/videos/ folder -->
+        <video class="hero-video" autoplay loop muted playsinline poster="assets/images/poster.jpg">
+            <source src="assets/videos/south-india.mp4" type="video/mp4">
+            <!-- Fallback if video doesn't load -->
+            <img src="assets/images/hero-bg.jpg" alt="South India" style="width:100%; height:100%; object-fit:cover;">
+        </video>
+
+        <!-- Dark Overlay for better text readability -->
+        <div class="hero-overlay"></div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <h1>Discover the Soul of<br>South India</h1>
             <p class="lead">Kerala • Tamil Nadu • Karnataka • Telangana • Andhra Pradesh</p>
             <div class="d-flex gap-3 justify-content-center flex-wrap">
                 <button class="btn btn-primary" onclick="scrollToStates()">Explore States →</button>
@@ -227,6 +322,7 @@
         </div>
     </section>
 
+    <!-- Interactive Map Section -->
     <section class="map-section" id="map-section">
         <div class="container">
             <h2 class="section-title">Interactive South India Map</h2>
@@ -241,6 +337,7 @@
         </div>
     </section>
 
+    <!-- States Grid Section -->
     <section class="section" id="statesSection">
         <div class="container">
             <h2 class="section-title">Choose Your State</h2>
@@ -249,6 +346,7 @@
         </div>
     </section>
 
+    <!-- Featured Destinations -->
     <section class="section bg-light">
         <div class="container">
             <h2 class="section-title">Featured Destinations</h2>
@@ -260,11 +358,13 @@
     <footer>
         <div class="container">
             <p>© 2026 Dakshin | South India's Ultimate Travel Guide</p>
-            <div class="mt-2"><small>🌿 30+ Destinations | 🏨 100+ Handpicked Hotels | ✨ AI-Powered Trip Planner</small>
+            <div class="mt-2">
+                <small>🌿 30+ Destinations | 🏨 100+ Handpicked Hotels | ✨ AI-Powered Trip Planner</small>
             </div>
         </div>
     </footer>
 
+    <!-- Trip Planner Modal -->
     <div class="modal fade" id="tripPlannerModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -274,7 +374,7 @@
                 </div>
                 <div class="modal-body" id="plannerContent">
                     <div class="text-center py-4">
-                        <div class="spinner-border text-danger"></div>
+                        <div class="spinner-border text-danger" role="status"></div>
                         <p class="mt-2">Loading planner...</p>
                     </div>
                 </div>
@@ -289,6 +389,7 @@
     <script src="assets/js/trip-planner.js"></script>
 
     <script>
+        // States Data - 5 states with 6 destinations each
         const statesData = [
             { name: "Kerala", tagline: "God's Own Country", img: "assets/images/kerala-backwaters.jpg", color: "#1f9d7b", destinations: ["Alleppey Backwaters", "Munnar", "Kovalam Beach", "Varkala", "Thekkady", "Wayanad"] },
             { name: "Tamil Nadu", tagline: "Land of Temples", img: "assets/images/meenakshi.jpg", color: "#d94c4c", destinations: ["Meenakshi Temple", "Ooty", "Marina Beach", "Kodaikanal", "Rameshwaram", "Mahabalipuram"] },
@@ -326,11 +427,39 @@
             grid.innerHTML = html;
         }
 
-        function scrollToStates() { document.getElementById('statesSection').scrollIntoView({ behavior: 'smooth' }); }
-        function openTripPlanner() { const modal = new bootstrap.Modal(document.getElementById('tripPlannerModal')); if (typeof loadPlannerForm === 'function') loadPlannerForm(); else document.getElementById('plannerContent').innerHTML = `<div class="text-center py-4"><i class="fas fa-map-marked-alt fa-3x text-danger mb-3"></i><h5>Plan Your Perfect Trip</h5><p>Select your preferences and get a personalized itinerary</p><button class="btn btn-primary" onclick="location.href='tourpackages.html'">View Tour Packages</button></div>`; modal.show(); }
+        function scrollToStates() {
+            document.getElementById('statesSection').scrollIntoView({ behavior: 'smooth' });
+        }
 
-        document.addEventListener('DOMContentLoaded', () => { renderStates(); renderFeatured(); });
-        window.scrollToStates = scrollToStates; window.openTripPlanner = openTripPlanner;
+        function openTripPlanner() {
+            const modal = new bootstrap.Modal(document.getElementById('tripPlannerModal'));
+            if (typeof loadPlannerForm === 'function') {
+                loadPlannerForm();
+            } else {
+                document.getElementById('plannerContent').innerHTML = `<div class="text-center py-4"><i class="fas fa-map-marked-alt fa-3x text-danger mb-3"></i><h5>Plan Your Perfect Trip</h5><p>Select your preferences and get a personalized itinerary</p><button class="btn btn-primary" onclick="location.href='tourpackages.html'">View Tour Packages</button></div>`;
+            }
+            modal.show();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderStates();
+            renderFeatured();
+
+            // Video autoplay fix for mobile
+            const video = document.querySelector('.hero-video');
+            if (video) {
+                video.play().catch(function (error) {
+                    console.log("Video autoplay failed:", error);
+                    // Add a click listener to play video on user interaction
+                    document.body.addEventListener('click', function () {
+                        video.play();
+                    }, { once: true });
+                });
+            }
+        });
+
+        window.scrollToStates = scrollToStates;
+        window.openTripPlanner = openTripPlanner;
     </script>
 </body>
 
