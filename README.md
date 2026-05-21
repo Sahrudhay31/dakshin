@@ -1,4 +1,4 @@
-# ✨ Dakshin - South India Tourism Website
+#  Dakshin - South India Tourism Website
 
 [![GitHub Pages](https://img.shields.io/badge/Deployed%20on-GitHub%20Pages-blue)](https://your-username.github.io/dakshin-tourism)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple)](https://getbootstrap.com)
@@ -232,7 +232,17 @@ php -S localhost:8000
 
 ## About Us Pge
 <img width="1920" height="977" alt="image" src="https://github.com/user-attachments/assets/82c16a32-3d12-43fd-b25a-3ee5d6c96ad8" />
-    <img width="1920" height="977" alt="image" src="https://github.com/user-attachments/assets/b60d10b8-5669-4400-b2bd-5d6290b95dc0" />
+<img width="1920" height="977" alt="image" src="https://github.com/user-attachments/assets/83c5a7c7-2cd2-40b9-85b0-b8233cf9bbad" />
+
+
+# Credits
+- Credits
+- SimpleMaps for interactive map library
+- Bootstrap for responsive framework
+- Font Awesome for icons
+- Google Fonts for typography
+- Pexels and Pixabay for stock images
+
 
 
 
