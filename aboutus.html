@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Dakshin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* About Page Styles */
+        .about-hero {
+            background: linear-gradient(135deg, #1a2a3a, #0f1a24);
+            padding: 120px 0 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .about-hero p {
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .mission-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 28px;
+            background: #f8fafc;
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #d41e3c, #ff6b35);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .mission-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .mission-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #1e2a3e;
+        }
+
+        .mission-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 80px 0;
+            background: #f1f5f9;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #1e2a3e;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #d41e3c, #ff6b35);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 30px auto 0;
+            background: linear-gradient(135deg, #d41e3c, #ff6b35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .team-info {
+            padding: 25px;
+        }
+
+        .team-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #1e2a3e;
+        }
+
+        .team-role {
+            color: #d41e3c;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .team-desc {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .btn-portfolio {
+            background: linear-gradient(135deg, #d41e3c, #ff6b35);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .btn-portfolio a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-portfolio:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 30, 60, 0.3);
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .team-social a {
+            width: 35px;
+            height: 35px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d41e3c;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .team-social a:hover {
+            background: #d41e3c;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #d41e3c;
+        }
+
+        .stat-label {
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+
+            .team-img {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand logo" href="index.html">
+                <div class="logo-container">
+                    <img src="assets/images/logo.jpg" alt="Dakshin Logo" class="logo-img"
+                        onerror="this.style.display='none'">
+                    <div>
+                        <div class="logo-text">Dakshin</div>
+                        <div class="logo-subtitle">SOUTH INDIA • ENDLESS DISCOVERIES</div>
+                    </div>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon bg-white"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tourpackages.html">Tour Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="openTripPlanner()">Trip Planner</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
+                    <li class="nav-item" id="authNavItem"><a class="nav-link" id="authLink" href="login.html">Sign
+                            In</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About Dakshin</h1>
+            <p>We are a passionate team of four travel enthusiasts dedicated to showcasing the beauty and diversity of
+                South India</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>To make South India's hidden gems accessible to every traveler, providing authentic
+                            experiences and seamless travel planning.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>To become India's most trusted travel platform, connecting travelers with authentic South
+                            Indian experiences.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Our Values</h3>
+                        <p>Authenticity, Sustainability, Customer First, Innovation, and Cultural Respect in everything
+                            we do.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Destinations</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">States Covered</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Happy Travelers</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-number">4.8</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section - 4 Members -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-subtitle">The passionate minds behind Dakshin</p>
+
+            <div class="row">
+                <!-- Team Member 1 - Sahrudhay -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-card">
+                        <div class="team-img">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Sahrudhay</h3>
+                            <div class="team-role">Frontend Developer</div>
+                            <button class="btn-portfolio"
+                                onclick="window.open('https://sahrudhay31.github.io/Portfolio-Website/', '_blank')">View
+                                Portfolio</button>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 - Aryan -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-card">
+                        <div class="team-img">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Aryan Gopishetty</h3>
+                            <div class="team-role">Frontend Developer</div>
+                            <button class="btn-portfolio"
+                                onclick="window.open('https://aryan-gopishetty.github.io/My-Portfolio/', '_blank')">View
+                                Portfolio</button>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 - Rohan -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-card">
+                        <div class="team-img">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Rohan Lucky</h3>
+                            <div class="team-role">Backend Developer</div>
+                            <button class="btn-portfolio" onclick="window.open('#', '_blank')">View Portfolio</button>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 - Kowshik -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-card">
+                        <div class="team-img">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Kowshik D</h3>
+                            <div class="team-role">UI/UX Designer</div>
+                            <button class="btn-portfolio"
+                                onclick="window.open('https://kowshik102007.github.io/Portfolio/', '_blank')">View
+                                Portfolio</button>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5" style="background: white;">
+        <div class="container text-center">
+            <h2 class="mb-3">Ready to Explore South India?</h2>
+            <p class="mb-4 text-muted">Join thousands of happy travelers who discovered paradise with Dakshin</p>
+            <a href="tourpackages.html" class="btn btn-primary">Explore Tour Packages →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Main Footer Grid -->
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-column">
+                    <div class="footer-logo">Dakshin</div>
+                    <p>South India's Ultimate Travel Guide. Discover breathtaking destinations, curated tour packages,
+                        and Trip planning.</p>
+
+                </div>
+
+                <!-- Quick Links Column -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="tourpackages.html">Tour Packages</a></li>
+                        <li><a href="#" onclick="openTripPlanner()">Trip Planner</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:munnasahrudhay@gmail.com">munnasahrudhay@gmail.com</a></li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:aryangopishetty@gmail.com">aryangopishetty@gmail.com</a></li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:rohanlucky331@gmail.com">rohanlucky331@gmail.com</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:kowshikd@gmail.com">kowshikd@gmail.com</a>
+                        </li>
+                        <li><i class="fas fa-map-marker-alt"></i> Amritapuri, Kerala, India</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© 2026 Dakshin - All Rights Reserved</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cancellation Policy</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        /* Footer Styles */
+        .footer {
+            background: #0a0f1c;
+            color: #94a3b8;
+            padding: 60px 0 30px;
+            margin-top: 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f7c948, #ff6b35);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .footer-column p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-column h4 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h4:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(135deg, #d41e3c, #ff6b35);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b35;
+            padding-left: 5px;
+        }
+
+        .footer-links i {
+            margin-right: 8px;
+            width: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: #ff6b35;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom-links a {
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #ff6b35;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .footer-column h4:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-bottom-links {
+                justify-content: center;
+            }
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        function openTripPlanner() {
+            alert("✨ Smart Trip Planner\n\nClick on 'Trip Planner' in the navbar to plan your perfect trip!");
+        }
+
+        function updateAuthButton() {
+            const user = JSON.parse(localStorage.getItem('dakshin_current_user'));
+            const authNavItem = document.getElementById('authNavItem');
+            if (user && authNavItem) {
+                authNavItem.innerHTML = `<div class="dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="fas fa-user-circle"></i> ${user.fullName.split(' ')[0]}</a><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="#" onclick="viewProfile()"><i class="fas fa-user"></i> My Profile</a></li><li><a class="dropdown-item" href="#" onclick="showMyBookings()"><i class="fas fa-suitcase"></i> My Bookings</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a></li></ul></div>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', updateAuthButton);
+    </script>
+</body>
+
+</html>

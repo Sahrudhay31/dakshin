@@ -1,29 +1,28 @@
-// Complete Destinations Database with ALL your images for carousels
+// Complete Destinations Database - 30 Destinations
+// Cover images remain as original, Carousel images are new (3 per destination)
 
 const destinationsDB = [
-  // KERALA (6 destinations)
+  // ==================== KERALA (6 Destinations) ====================
   {
     id: 1,
     name: "Alleppey Backwaters",
     state: "Kerala",
     desc: "Houseboat Paradise",
     category: "beach",
-    img: "assets/images/kerala-backwaters.jpg",
-    images: ["assets/images/kerala-backwaters.jpg", "assets/images/kerala.jpg", "assets/images/kerala1.jpg"],
+    img: "assets/images/kerala-backwaters.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/ALLEPEY1.jpg", "assets/images/ALLEPEY 2.jpg", "assets/images/ALLEPEY 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "The most iconic backwater destination in Kerala. Cruise through palm-fringed canals in traditional houseboats.",
     highlights: ["🏠 Overnight houseboat stay", "🌿 Village walks", "🦜 Bird watching", "🌅 Sunset cruise"],
     nearby: [
       { name: "Kumarakom Bird Sanctuary", distance: "25 km", time: "45 mins", description: "Famous migratory bird sanctuary" },
-      { name: "Kuttanad", distance: "15 km", time: "30 mins", description: "Rice bowl of Kerala with below-sea-level farming" },
+      { name: "Kuttanad", distance: "15 km", time: "30 mins", description: "Rice bowl of Kerala" },
       { name: "Marari Beach", distance: "12 km", time: "20 mins", description: "Serene beach with fishing village" },
-      { name: "Pathiramanal Island", distance: "10 km", time: "30 mins boat", description: "Beautiful small island in backwaters" },
+      { name: "Pathiramanal Island", distance: "10 km", time: "30 mins boat", description: "Beautiful small island" },
       { name: "Ambalapuzha Temple", distance: "8 km", time: "15 mins", description: "Famous Sri Krishna Temple" }
     ],
     transport: { airport: "Cochin International (85 km)", railway: "Alleppey Station", bus: "Alleppey KSRTC" },
     hotel: "Houseboats: ₹8,000-25,000 | Resorts: ₹3,500-12,000",
-    rating: 4.8,
-    lat: 9.4981,
-    lng: 76.3388
+    rating: 4.8, lat: 9.4981, lng: 76.3388
   },
   {
     id: 2,
@@ -31,22 +30,20 @@ const destinationsDB = [
     state: "Kerala",
     desc: "Tea Gardens Paradise",
     category: "hill",
-    img: "assets/images/munnar.jpg",
-    images: ["assets/images/munnar.jpg", "assets/images/munnar1.jpg", "assets/images/munnar copy.jpg"],
+    img: "assets/images/munnar.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/MUNNAR 1.jpg", "assets/images/MUNNAR 2.jpg", "assets/images/MUNNAR 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "Beautiful hill station covered with endless tea plantations and misty mountains.",
     highlights: ["🍃 Tea estate tours", "🗻 Echo Point", "🏞️ Mattupetty Dam", "🐐 Eravikulam National Park"],
     nearby: [
       { name: "Echo Point", distance: "15 km", time: "30 mins", description: "Natural echo phenomenon" },
-      { name: "Top Station", distance: "32 km", time: "1 hour", description: "Highest point with stunning views" },
-      { name: "Devikulam", distance: "8 km", time: "15 mins", description: "Scenic hill station with lake" },
-      { name: "Chinnar Wildlife", distance: "60 km", time: "2 hours", description: "Dry deciduous forest sanctuary" },
+      { name: "Top Station", distance: "32 km", time: "1 hour", description: "Highest point" },
+      { name: "Devikulam", distance: "8 km", time: "15 mins", description: "Scenic hill station" },
+      { name: "Chinnar Wildlife", distance: "60 km", time: "2 hours", description: "Dry deciduous forest" },
       { name: "Anamudi Peak", distance: "25 km", time: "1 hour", description: "Highest peak in South India" }
     ],
     transport: { airport: "Cochin International (130 km)", railway: "Aluva (110 km)", bus: "Munnar Bus Station" },
     hotel: "₹2,000 - ₹15,000 per night",
-    rating: 4.7,
-    lat: 10.0889,
-    lng: 77.0595
+    rating: 4.7, lat: 10.0889, lng: 77.0595
   },
   {
     id: 3,
@@ -54,8 +51,8 @@ const destinationsDB = [
     state: "Kerala",
     desc: "Golden Beach",
     category: "beach",
-    img: "assets/images/kovalam.jpg",
-    images: ["assets/images/kovalam.jpg", "assets/images/kovalam2.jpeg", "assets/images/kovalam3.jpg", "assets/images/kovalambeach1.jpg"],
+    img: "assets/images/kovalam.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/KOVALAM 1.jpg", "assets/images/KOVALAM 2.jpg", "assets/images/KOVALAM 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "World-famous crescent-shaped beach with lighthouse and Ayurvedic centers.",
     highlights: ["🗼 Lighthouse visit", "🧘 Beach yoga", "💆 Ayurvedic massage"],
     nearby: [
@@ -67,9 +64,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Trivandrum (15 km)", railway: "Trivandrum Central", bus: "Kovalam" },
     hotel: "₹1,800 - ₹20,000 per night",
-    rating: 4.5,
-    lat: 8.4204,
-    lng: 76.9784
+    rating: 4.5, lat: 8.4204, lng: 76.9784
   },
   {
     id: 4,
@@ -77,21 +72,19 @@ const destinationsDB = [
     state: "Kerala",
     desc: "Cliff Beach",
     category: "beach",
-    img: "assets/images/varkala.jpg",
-    images: ["assets/images/varkala.jpg", "assets/images/varkala1.jpg", "assets/images/varakala2.jpg", "assets/images/varakala3.jpg"],
+    img: "assets/images/varkala.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/VARAKALA 1.jpg", "assets/images/VARAKALA 2.jpg", "assets/images/VARAKALA 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "Unique cliff-side beach known for mineral springs and spiritual vibe.",
     highlights: ["🏄 Surfing", "🕉️ Janardhana Temple", "🌊 Cliff walks", "💧 Natural springs"],
     nearby: [
-      { name: "Kappil Beach", distance: "6 km", time: "15 mins", description: "Secluded beach with backwaters" },
-      { name: "Sivagiri Mutt", distance: "3 km", time: "10 mins", description: "Spiritual center of Sree Narayana Guru" },
-      { name: "Ponnumthuruthu Island", distance: "10 km", time: "30 mins boat", description: "Private island with temple" },
+      { name: "Kappil Beach", distance: "6 km", time: "15 mins", description: "Secluded beach" },
+      { name: "Sivagiri Mutt", distance: "3 km", time: "10 mins", description: "Spiritual center" },
+      { name: "Ponnumthuruthu Island", distance: "10 km", time: "30 mins boat", description: "Private island" },
       { name: "Anjengo Fort", distance: "12 km", time: "25 mins", description: "Historic Dutch fort" }
     ],
     transport: { airport: "Trivandrum (45 km)", railway: "Varkala Sivagiri", bus: "Varkala" },
     hotel: "₹2,000 - ₹12,000/night",
-    rating: 4.6,
-    lat: 8.7379,
-    lng: 76.7223
+    rating: 4.6, lat: 8.7379, lng: 76.7223
   },
   {
     id: 5,
@@ -99,8 +92,8 @@ const destinationsDB = [
     state: "Kerala",
     desc: "Wildlife Sanctuary",
     category: "wildlife",
-    img: "assets/images/thekkady.jpg",
-    images: ["assets/images/thekkady.jpg", "assets/images/thekkady1.jpg", "assets/images/thekkady2.jpg", "assets/images/thekkady3.jpg"],
+    img: "assets/images/thekkady.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/THEKKADY 1.jpg", "assets/images/THEKKADY 2.webp", "assets/images/THEKKADY 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "Periyar Wildlife Sanctuary famous for elephant and tiger safaris.",
     highlights: ["🛶 Boat safari", "🌿 Jungle trek", "🌶️ Spice plantation tour"],
     nearby: [
@@ -112,9 +105,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Madurai / Cochin", railway: "Kottayam", bus: "Thekkady" },
     hotel: "₹2,500 - ₹14,000 per night",
-    rating: 4.7,
-    lat: 9.5998,
-    lng: 77.1643
+    rating: 4.7, lat: 9.5998, lng: 77.1643
   },
   {
     id: 6,
@@ -122,8 +113,8 @@ const destinationsDB = [
     state: "Kerala",
     desc: "Forests & Waterfalls",
     category: "hill",
-    img: "assets/images/wayanad.jpg",
-    images: ["assets/images/wayanad.jpg", "assets/images/wayanad1.jpg", "assets/images/wayanad2.jpg", "assets/images/wayanad3.jpg"],
+    img: "assets/images/wayanad.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/WAYANAD 1.jpg", "assets/images/WAYANAD 2.jpg", "assets/images/WAYANAD 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "Lush green hills, wildlife and breathtaking waterfalls.",
     highlights: ["🏔️ Edakkal Caves", "🏞️ Chembra Peak", "🌊 Pookode Lake"],
     nearby: [
@@ -135,20 +126,18 @@ const destinationsDB = [
     ],
     transport: { airport: "Calicut (90 km)", railway: "Kozhikode", bus: "Kalpetta" },
     hotel: "₹2,000 - ₹10,000 per night",
-    rating: 4.6,
-    lat: 11.6854,
-    lng: 76.1320
+    rating: 4.6, lat: 11.6854, lng: 76.1320
   },
 
-  // TAMIL NADU (6 destinations)
+  // ==================== TAMIL NADU (6 Destinations) ====================
   {
     id: 7,
     name: "Meenakshi Temple",
     state: "Tamil Nadu",
     desc: "Architectural Wonder",
     category: "temple",
-    img: "assets/images/meenakshi.jpg",
-    images: ["assets/images/meenakshi.jpg", "assets/images/meenakshi1.jpg", "assets/images/meenakshi2.jpg", "assets/images/meenakshi3.jpg"],
+    img: "assets/images/meenakshi.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/MEENAKSHI 1.jpg", "assets/images/MEENAKSHI 2.avif", "assets/images/MEENAKSHI 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "One of the most magnificent temples in India with colorful gopurams.",
     highlights: ["🛕 Temple tour", "🌅 Evening Aarti", "🏛️ Thousand Pillar Hall"],
     nearby: [
@@ -160,9 +149,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Madurai Airport", railway: "Madurai Junction", bus: "Madurai Central" },
     hotel: "₹1,500 - ₹8,000 per night",
-    rating: 4.9,
-    lat: 9.9195,
-    lng: 78.1193
+    rating: 4.9, lat: 9.9195, lng: 78.1193
   },
   {
     id: 8,
@@ -170,8 +157,8 @@ const destinationsDB = [
     state: "Tamil Nadu",
     desc: "Queen of Hills",
     category: "hill",
-    img: "assets/images/ooty.jpg",
-    images: ["assets/images/ooty.jpg"],
+    img: "assets/images/ooty.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/OOTY 1.jpg", "assets/images/OOTY 2.jpg", "assets/images/OOTY 3.webp"], // NEW CAROUSEL IMAGES
     overview: "Colonial hill station with botanical gardens and toy train.",
     highlights: ["🚂 Toy train ride", "🌿 Botanical Gardens", "🏞️ Doddabetta Peak"],
     nearby: [
@@ -183,9 +170,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Coimbatore (88 km)", railway: "Mettupalayam", bus: "Ooty" },
     hotel: "₹2,500 - ₹12,000 per night",
-    rating: 4.6,
-    lat: 11.4102,
-    lng: 76.6950
+    rating: 4.6, lat: 11.4102, lng: 76.6950
   },
   {
     id: 9,
@@ -193,8 +178,8 @@ const destinationsDB = [
     state: "Tamil Nadu",
     desc: "Longest Beach",
     category: "beach",
-    img: "assets/images/marina.jpg",
-    images: ["assets/images/marina.jpg"],
+    img: "assets/images/marina.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/MARINA 1.webp", "assets/images/MARINA 2.avif", "assets/images/MARINA 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "Second longest urban beach in the world, perfect for evening walks.",
     highlights: ["🚶 Beach walk", "🌅 Sunrise/Sunset", "🍿 Local snacks"],
     nearby: [
@@ -206,9 +191,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Chennai International", railway: "Chennai Egmore", bus: "Chennai" },
     hotel: "₹1,800 - ₹15,000 per night",
-    rating: 4.4,
-    lat: 13.0500,
-    lng: 80.2824
+    rating: 4.4, lat: 13.0500, lng: 80.2824
   },
   {
     id: 10,
@@ -216,8 +199,8 @@ const destinationsDB = [
     state: "Tamil Nadu",
     desc: "Princess of Hills",
     category: "hill",
-    img: "assets/images/kodaikanal.jpg",
-    images: ["assets/images/kodaikanal.jpg"],
+    img: "assets/images/kodaikanal.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/KODAIKANAL 1.webp", "assets/images/KODAIKANAL 2.avif", "assets/images/KODAIKANAL 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "Princess of Hill Stations with star-shaped lake and pine forests.",
     highlights: ["🗻 Pillar Rocks", "🚶 Coaker's Walk", "🌸 Bryant Park"],
     nearby: [
@@ -229,9 +212,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Madurai (120 km)", railway: "Kodaikanal Road", bus: "Kodaikanal" },
     hotel: "₹2,000 - ₹10,000 per night",
-    rating: 4.6,
-    lat: 10.2380,
-    lng: 77.4895
+    rating: 4.6, lat: 10.2380, lng: 77.4895
   },
   {
     id: 11,
@@ -239,9 +220,9 @@ const destinationsDB = [
     state: "Tamil Nadu",
     desc: "Holy Island",
     category: "temple",
-    img: "assets/images/rameshwaram.jpg",
-    images: ["assets/images/rameshwaram.jpg"],
-    overview: "Important Hindu pilgrimage site - one of Char Dham, connected by Pamban Bridge.",
+    img: "assets/images/rameshwaram.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/RAMESHWARAM 1.webp", "assets/images/RAMESHWARAM 2.cms", "assets/images/RAMESHWARAM 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "Important Hindu pilgrimage site - one of Char Dham.",
     highlights: ["🛕 Ramanathaswamy Temple", "🏖️ Dhanushkodi", "🌊 Agni Theertham"],
     nearby: [
       { name: "Pamban Bridge", distance: "2 km", time: "10 mins", description: "Sea bridge" },
@@ -252,9 +233,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Madurai (174 km)", railway: "Rameshwaram", bus: "Rameshwaram" },
     hotel: "₹1,200 - ₹7,000 per night",
-    rating: 4.7,
-    lat: 9.2877,
-    lng: 79.3129
+    rating: 4.7, lat: 9.2877, lng: 79.3129
   },
   {
     id: 12,
@@ -262,9 +241,9 @@ const destinationsDB = [
     state: "Tamil Nadu",
     desc: "Rock Cut Temples",
     category: "temple",
-    img: "assets/images/mahabalipuram.jpg",
-    images: ["assets/images/mahabalipuram.jpg"],
-    overview: "UNESCO World Heritage site with ancient rock carvings by the sea.",
+    img: "assets/images/mahabalipuram.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/MAHABALIPURAM 1.webp", "assets/images/MAHABALIPURAM 2.jpg", "assets/images/MAHABALIPURAM 3.avif"], // NEW CAROUSEL IMAGES
+    overview: "UNESCO World Heritage site with ancient rock carvings.",
     highlights: ["🏛️ Shore Temple", "🐘 Pancha Rathas", "🎨 Arjuna's Penance"],
     nearby: [
       { name: "Crocodile Bank", distance: "15 km", time: "30 mins", description: "Crocodile sanctuary" },
@@ -275,21 +254,19 @@ const destinationsDB = [
     ],
     transport: { airport: "Chennai (60 km)", railway: "Chengalpattu", bus: "Mahabalipuram" },
     hotel: "₹2,000 - ₹9,000 per night",
-    rating: 4.5,
-    lat: 12.6185,
-    lng: 80.1944
+    rating: 4.5, lat: 12.6185, lng: 80.1944
   },
 
-  // KARNATAKA (6 destinations)
+  // ==================== KARNATAKA (6 Destinations) ====================
   {
     id: 13,
     name: "Hampi",
     state: "Karnataka",
     desc: "UNESCO Ruins",
     category: "temple",
-    img: "assets/images/hampi.jpg",
-    images: ["assets/images/hampi.jpg"],
-    overview: "Magnificent ruins of the Vijayanagara Empire amidst boulder-strewn landscape.",
+    img: "assets/images/hampi.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/HAMPI 1.jpg", "assets/images/HAMPI 2.jpg", "assets/images/HAMPI 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "Magnificent ruins of the Vijayanagara Empire.",
     highlights: ["🏛️ Vittala Temple", "🛕 Virupaksha Temple", "🏵️ Lotus Mahal"],
     nearby: [
       { name: "Hospet", distance: "13 km", time: "25 mins", description: "Nearest town" },
@@ -300,9 +277,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Hubli (143 km)", railway: "Hospet Junction", bus: "Hampi" },
     hotel: "₹1,500 - ₹8,000 per night",
-    rating: 4.8,
-    lat: 15.3350,
-    lng: 76.4600
+    rating: 4.8, lat: 15.3350, lng: 76.4600
   },
   {
     id: 14,
@@ -310,9 +285,9 @@ const destinationsDB = [
     state: "Karnataka",
     desc: "Coffee Plantations",
     category: "hill",
-    img: "assets/images/coorg.jpg",
-    images: ["assets/images/coorg.jpg"],
-    overview: "Scotland of India - lush coffee estates, misty hills, and waterfalls.",
+    img: "assets/images/coorg.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/COORG 1.jpg", "assets/images/COORG 2.jpg", "assets/images/COORG 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "Scotland of India - lush coffee estates and hills.",
     highlights: ["💦 Abbey Falls", "👑 Raja Seat", "☕ Coffee plantation tour"],
     nearby: [
       { name: "Talakaveri", distance: "48 km", time: "1.5 hours", description: "River origin" },
@@ -323,9 +298,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Mangalore (160 km)", railway: "Mysore (120 km)", bus: "Madikeri" },
     hotel: "₹2,500 - ₹12,000 per night",
-    rating: 4.7,
-    lat: 12.4244,
-    lng: 75.7382
+    rating: 4.7, lat: 12.4244, lng: 75.7382
   },
   {
     id: 15,
@@ -333,9 +306,9 @@ const destinationsDB = [
     state: "Karnataka",
     desc: "Royal Palace",
     category: "temple",
-    img: "assets/images/mysore.jpg",
-    images: ["assets/images/mysore.jpg"],
-    overview: "One of the most beautiful royal palaces in India, illuminated at night.",
+    img: "assets/images/mysore.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/MYSOREPALACE 1.jpg", "assets/images/MYSOREPALACE 2.jpg", "assets/images/MYSOREPALACE 3.JPG"], // NEW CAROUSEL IMAGES
+    overview: "One of the most beautiful royal palaces in India.",
     highlights: ["🏰 Palace tour", "✨ Light show", "🏔️ Chamundi Hills"],
     nearby: [
       { name: "Chamundi Hills", distance: "13 km", time: "30 mins", description: "Hill temple" },
@@ -346,9 +319,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Mysore Airport", railway: "Mysore Junction", bus: "Mysore" },
     hotel: "₹2,000 - ₹10,000 per night",
-    rating: 4.8,
-    lat: 12.3051,
-    lng: 76.6552
+    rating: 4.8, lat: 12.3051, lng: 76.6552
   },
   {
     id: 16,
@@ -356,9 +327,9 @@ const destinationsDB = [
     state: "Karnataka",
     desc: "Wildlife Park",
     category: "wildlife",
-    img: "assets/images/bandipur.jpg",
-    images: ["assets/images/bandipur.jpg"],
-    overview: "One of the best tiger reserves in India, part of Nilgiri Biosphere.",
+    img: "assets/images/bandipur.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/BANDIPUR 1.jpg", "assets/images/BANDIPUR 2.jpg", "assets/images/BANDIPUR 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "One of the best tiger reserves in India.",
     highlights: ["🚙 Jeep safari", "🐅 Wildlife spotting", "🦜 Bird watching"],
     nearby: [
       { name: "Nagarhole", distance: "40 km", time: "1 hour", description: "Tiger reserve" },
@@ -369,9 +340,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Mysore (80 km)", railway: "Mysore", bus: "Bandipur" },
     hotel: "₹2,500 - ₹12,000 per night",
-    rating: 4.5,
-    lat: 11.6625,
-    lng: 76.6275
+    rating: 4.5, lat: 11.6625, lng: 76.6275
   },
   {
     id: 17,
@@ -379,9 +348,9 @@ const destinationsDB = [
     state: "Karnataka",
     desc: "Ancient Temples",
     category: "temple",
-    img: "assets/images/badami.jpg",
-    images: ["assets/images/badami.jpg"],
-    overview: "Famous rock-cut cave temples from 6th century Chalukyan era.",
+    img: "assets/images/badami.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/BADAMI CAVES1.jpg", "assets/images/BADAMI CAVES2.jpg", "assets/images/BADAMI CAVES3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "Famous rock-cut cave temples from 6th century.",
     highlights: ["🕋 Cave temples", "🏛️ Bhutanatha Temple", "📜 Archaeological Museum"],
     nearby: [
       { name: "Pattadakal", distance: "22 km", time: "40 mins", description: "UNESCO site" },
@@ -392,9 +361,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Hubli (105 km)", railway: "Badami", bus: "Badami" },
     hotel: "₹1,500 - ₹6,000 per night",
-    rating: 4.4,
-    lat: 15.9184,
-    lng: 75.6850
+    rating: 4.4, lat: 15.9184, lng: 75.6850
   },
   {
     id: 18,
@@ -402,9 +369,9 @@ const destinationsDB = [
     state: "Karnataka",
     desc: "Spiritual Beach",
     category: "beach",
-    img: "assets/images/gokarna.jpg",
-    images: ["assets/images/gokarna.jpg"],
-    overview: "Spiritual beach town with pristine beaches and ancient Mahabaleshwar Temple.",
+    img: "assets/images/gokarna.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/GOKARNA 1.jpg", "assets/images/GOKARNA 2.jpg", "assets/images/GOKARNA 3.webp"], // NEW CAROUSEL IMAGES
+    overview: "Spiritual beach town with pristine beaches.",
     highlights: ["🏖️ Om Beach", "🛕 Mahabaleshwar Temple", "🏝️ Half Moon Beach"],
     nearby: [
       { name: "Kudle Beach", distance: "2 km", time: "10 mins", description: "Beach" },
@@ -415,21 +382,19 @@ const destinationsDB = [
     ],
     transport: { airport: "Goa (140 km)", railway: "Gokarna Road", bus: "Gokarna" },
     hotel: "₹1,800 - ₹8,000 per night",
-    rating: 4.6,
-    lat: 14.5500,
-    lng: 74.3167
+    rating: 4.6, lat: 14.5500, lng: 74.3167
   },
 
-  // TELANGANA (6 destinations)
+  // ==================== TELANGANA (6 Destinations) ====================
   {
     id: 19,
     name: "Charminar",
     state: "Telangana",
     desc: "Icon of Hyderabad",
     category: "temple",
-    img: "assets/images/charminar.jpg",
-    images: ["assets/images/charminar.jpg"],
-    overview: "The global icon of Hyderabad with four graceful minarets.",
+    img: "assets/images/charminar.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/CHARMINAR 1.jpg", "assets/images/CHARMINAR 2.jpg", "assets/images/CHARMINAR 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "The global icon of Hyderabad with four minarets.",
     highlights: ["🛍️ Laad Bazaar shopping", "🕌 Mecca Masjid", "🌙 Night illumination"],
     nearby: [
       { name: "Laad Bazaar", distance: "0.1 km", time: "2 mins", description: "Shopping" },
@@ -440,88 +405,17 @@ const destinationsDB = [
     ],
     transport: { airport: "RGIA Hyderabad", railway: "Hyderabad Deccan", bus: "Hyderabad" },
     hotel: "₹1,500 - ₹9,000 per night",
-    rating: 4.5,
-    lat: 17.3616,
-    lng: 78.4747
+    rating: 4.5, lat: 17.3616, lng: 78.4747
   },
   {
     id: 20,
-    name: "Ramappa Temple",
-    state: "Telangana",
-    desc: "UNESCO Temple",
-    category: "temple",
-    img: "assets/images/ramappa.jpg",
-    images: ["assets/images/ramappa.jpg"],
-    overview: "UNESCO World Heritage temple known for floating bricks and intricate carvings.",
-    highlights: ["🛕 Temple architecture", "🏞️ Ramappa Lake", "🏺 Kakatiya heritage"],
-    nearby: [
-      { name: "Warangal Fort", distance: "70 km", time: "1.5 hours", description: "Fort" },
-      { name: "Thousand Pillar Temple", distance: "70 km", time: "1.5 hours", description: "Temple" },
-      { name: "Bhadrakali Temple", distance: "75 km", time: "1.5 hours", description: "Temple" },
-      { name: "Pakhal Lake", distance: "50 km", time: "1 hour", description: "Lake" },
-      { name: "Kolanupaka Temple", distance: "90 km", time: "2 hours", description: "Jain temple" }
-    ],
-    transport: { airport: "Hyderabad (200 km)", railway: "Warangal", bus: "Mulugu" },
-    hotel: "₹2,000 - ₹7,000 per night",
-    rating: 4.7,
-    lat: 18.2595,
-    lng: 79.9436
-  },
-  {
-    id: 21,
-    name: "Ramoji Film City",
-    state: "Telangana",
-    desc: "Film Studio",
-    category: "beach",
-    img: "assets/images/ramoji.jpg",
-    images: ["assets/images/ramoji.jpg"],
-    overview: "World's largest film studio complex, a complete entertainment city.",
-    highlights: ["🎬 Studio tour", "🎭 Live shows", "🎡 Theme parks"],
-    nearby: [
-      { name: "Hyderabad city", distance: "25 km", time: "45 mins", description: "City" },
-      { name: "Sagar Mahal", distance: "15 km", time: "30 mins", description: "Palace" },
-      { name: "Hayathnagar", distance: "10 km", time: "20 mins", description: "Town" },
-      { name: "Moula Ali", distance: "20 km", time: "35 mins", description: "Dargah" },
-      { name: "Uppal", distance: "20 km", time: "35 mins", description: "Suburb" }
-    ],
-    transport: { airport: "RGIA Hyderabad", railway: "Hyderabad", bus: "Ramoji" },
-    hotel: "₹2,500 - ₹10,000 per night",
-    rating: 4.6,
-    lat: 17.2617,
-    lng: 78.6806
-  },
-  {
-    id: 22,
-    name: "Birla Mandir",
-    state: "Telangana",
-    desc: "Marble Temple",
-    category: "temple",
-    img: "assets/images/birla-mandir.jpg",
-    images: ["assets/images/birla-mandir.jpg"],
-    overview: "Stunning marble temple on a hill offering panoramic city views.",
-    highlights: ["🛕 Temple visit", "🌆 City view", "🕯️ Evening aarti"],
-    nearby: [
-      { name: "Hussain Sagar", distance: "1 km", time: "10 mins", description: "Lake" },
-      { name: "Lumbini Park", distance: "1 km", time: "10 mins", description: "Park" },
-      { name: "Tank Bund", distance: "1 km", time: "10 mins", description: "Road with statues" },
-      { name: "Necklace Road", distance: "2 km", time: "15 mins", description: "Scenic road" },
-      { name: "Sanjeevaiah Park", distance: "3 km", time: "15 mins", description: "Park" }
-    ],
-    transport: { airport: "Hyderabad", railway: "Hyderabad", bus: "Hyderabad" },
-    hotel: "₹1,800 - ₹8,000 per night",
-    rating: 4.5,
-    lat: 17.4167,
-    lng: 78.4667
-  },
-  {
-    id: 23,
     name: "Golconda Fort",
     state: "Telangana",
     desc: "Historic Fort",
     category: "temple",
-    img: "assets/images/golconda.jpg",
-    images: ["assets/images/golconda.jpg"],
-    overview: "Famous historic fort known for its acoustic architecture and light show.",
+    img: "assets/images/golconda.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/GOLCONDA 1.jpg", "assets/images/GOLCONDA 2.jpg", "assets/images/GOLCONDA 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "Famous historic fort known for its acoustics.",
     highlights: ["🎭 Light & Sound show", "🏰 Royal palaces", "🔊 Acoustics demo"],
     nearby: [
       { name: "Qutb Shahi Tombs", distance: "1 km", time: "10 mins", description: "Tombs" },
@@ -532,19 +426,59 @@ const destinationsDB = [
     ],
     transport: { airport: "Hyderabad", railway: "Hyderabad", bus: "Golconda" },
     hotel: "₹1,800 - ₹9,000 per night",
-    rating: 4.6,
-    lat: 17.3822,
-    lng: 78.4000
+    rating: 4.6, lat: 17.3822, lng: 78.4000
   },
   {
-    id: 24,
+    id: 21,
+    name: "Ramoji Film City",
+    state: "Telangana",
+    desc: "Film Studio",
+    category: "beach",
+    img: "assets/images/ramoji.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/RAMOJI 1.jpg", "assets/images/RAMOJI 2.jpeg", "assets/images/RAMOJI 3.avif"], // NEW CAROUSEL IMAGES
+    overview: "World's largest film studio complex.",
+    highlights: ["🎬 Studio tour", "🎭 Live shows", "🎡 Theme parks"],
+    nearby: [
+      { name: "Hyderabad city", distance: "25 km", time: "45 mins", description: "City" },
+      { name: "Sagar Mahal", distance: "15 km", time: "30 mins", description: "Palace" },
+      { name: "Hayathnagar", distance: "10 km", time: "20 mins", description: "Town" },
+      { name: "Moula Ali", distance: "20 km", time: "35 mins", description: "Dargah" },
+      { name: "Uppal", distance: "20 km", time: "35 mins", description: "Suburb" }
+    ],
+    transport: { airport: "RGIA Hyderabad", railway: "Hyderabad", bus: "Ramoji" },
+    hotel: "₹2,500 - ₹10,000 per night",
+    rating: 4.6, lat: 17.2617, lng: 78.6806
+  },
+  {
+    id: 22,
+    name: "Birla Mandir",
+    state: "Telangana",
+    desc: "Marble Temple",
+    category: "temple",
+    img: "assets/images/birla-mandir.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/BIRLA MANDIR 1.png", "assets/images/BIRLA MANDIR 2.jpg", "assets/images/BIRLA MANDIR 3.webp"], // NEW CAROUSEL IMAGES
+    overview: "Stunning marble temple on a hill with panoramic view.",
+    highlights: ["🛕 Temple visit", "🌆 City view", "🕯️ Evening aarti"],
+    nearby: [
+      { name: "Hussain Sagar", distance: "1 km", time: "10 mins", description: "Lake" },
+      { name: "Lumbini Park", distance: "1 km", time: "10 mins", description: "Park" },
+      { name: "Tank Bund", distance: "1 km", time: "10 mins", description: "Road with statues" },
+      { name: "Necklace Road", distance: "2 km", time: "15 mins", description: "Scenic road" },
+      { name: "Sanjeevaiah Park", distance: "3 km", time: "15 mins", description: "Park" }
+    ],
+    transport: { airport: "Hyderabad", railway: "Hyderabad", bus: "Hyderabad" },
+    hotel: "₹1,800 - ₹8,000 per night",
+    rating: 4.5, lat: 17.4167, lng: 78.4667
+  },
+  {
+    id: 23,
     name: "Hussain Sagar",
     state: "Telangana",
     desc: "Lake & Buddha",
     category: "beach",
-    img: "assets/images/hussain.jpg",
-    images: ["assets/images/hussain.jpg"],
-    overview: "Picturesque lake with giant Buddha statue in the center.",
+    img: "assets/images/hussain.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/HUSSIAN SAGAR 1.jpg", "assets/images/HUSSIAN SAGAR 2.webp", "assets/images/HUSSIAN SAGAR 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "Picturesque lake with giant Buddha statue.",
     highlights: ["🛥️ Boat ride", "🚶 Tank Bund walk", "💡 Laser show"],
     nearby: [
       { name: "Birla Mandir", distance: "1 km", time: "10 mins", description: "Temple" },
@@ -555,21 +489,40 @@ const destinationsDB = [
     ],
     transport: { airport: "Hyderabad", railway: "Hyderabad", bus: "Hyderabad" },
     hotel: "₹2,000 - ₹10,000 per night",
-    rating: 4.4,
-    lat: 17.4125,
-    lng: 78.4739
+    rating: 4.4, lat: 17.4125, lng: 78.4739
+  },
+  {
+    id: 24,
+    name: "Ramappa Temple",
+    state: "Telangana",
+    desc: "UNESCO Temple",
+    category: "temple",
+    img: "assets/images/ramappa.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/RAMAPPA 1.jpg", "assets/images/RAMAPPA 2.webp", "assets/images/RAMAPPA 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "UNESCO World Heritage temple known for floating bricks.",
+    highlights: ["🛕 Temple architecture", "🏞️ Ramappa Lake", "🏺 Kakatiya heritage"],
+    nearby: [
+      { name: "Warangal Fort", distance: "70 km", time: "1.5 hours", description: "Fort" },
+      { name: "Thousand Pillar Temple", distance: "70 km", time: "1.5 hours", description: "Temple" },
+      { name: "Bhadrakali Temple", distance: "75 km", time: "1.5 hours", description: "Temple" },
+      { name: "Pakhal Lake", distance: "50 km", time: "1 hour", description: "Lake" },
+      { name: "Kolanupaka Temple", distance: "90 km", time: "2 hours", description: "Jain temple" }
+    ],
+    transport: { airport: "Hyderabad (200 km)", railway: "Warangal", bus: "Mulugu" },
+    hotel: "₹2,000 - ₹7,000 per night",
+    rating: 4.7, lat: 18.2595, lng: 79.9436
   },
 
-  // ANDHRA PRADESH (6 destinations)
+  // ==================== ANDHRA PRADESH (6 Destinations) ====================
   {
     id: 25,
     name: "Tirupati",
     state: "Andhra Pradesh",
     desc: "Spiritual Center",
     category: "temple",
-    img: "assets/images/tirupati.jpg",
-    images: ["assets/images/tirupati.jpg"],
-    overview: "One of the world's richest pilgrimage centers dedicated to Lord Venkateswara.",
+    img: "assets/images/tirupati.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/TIRUPATI 1.jpg", "assets/images/TIRUPATI 2.jpeg", "assets/images/TIRUPATI 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "One of the world's richest pilgrimage centers.",
     highlights: ["🛕 Temple darshan", "🏔️ Tirumala hills", "🍪 Laddu prasadam"],
     nearby: [
       { name: "Tirumala Hills", distance: "20 km", time: "45 mins", description: "Hill temple" },
@@ -580,19 +533,17 @@ const destinationsDB = [
     ],
     transport: { airport: "Tirupati Airport", railway: "Tirupati Main", bus: "Tirupati" },
     hotel: "₹1,500 - ₹8,000 per night",
-    rating: 4.9,
-    lat: 13.6288,
-    lng: 79.4192
+    rating: 4.9, lat: 13.6288, lng: 79.4192
   },
   {
     id: 26,
-    name: "Vizag Beach",
+    name: "Visakhapatnam Beach",
     state: "Andhra Pradesh",
     desc: "Coastal Beauty",
     category: "beach",
-    img: "assets/images/vizag.jpg",
-    images: ["assets/images/vizag.jpg"],
-    overview: "Beautiful coastal city with clean beaches and submarine museum.",
+    img: "assets/images/vizag.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/VIZag 1.avif", "assets/images/VIZag 2.jpg", "assets/images/VIZag 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "Beautiful coastal city with clean beaches.",
     highlights: ["🏖️ RK Beach", "🚢 Submarine Museum", "🏔️ Kailasagiri Park"],
     nearby: [
       { name: "Araku Valley", distance: "120 km", time: "3 hours", description: "Hill station" },
@@ -603,9 +554,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Visakhapatnam", railway: "Visakhapatnam", bus: "Vizag" },
     hotel: "₹2,000 - ₹10,000 per night",
-    rating: 4.5,
-    lat: 17.7041,
-    lng: 83.2977
+    rating: 4.5, lat: 17.7041, lng: 83.2977
   },
   {
     id: 27,
@@ -613,9 +562,9 @@ const destinationsDB = [
     state: "Andhra Pradesh",
     desc: "Hill Station",
     category: "hill",
-    img: "assets/images/araku.jpg",
-    images: ["assets/images/araku.jpg"],
-    overview: "Lush green hill station known for coffee plantations and tribal culture.",
+    img: "assets/images/araku.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/ARAKU 1.avif", "assets/images/ARAKU 2.jpeg", "assets/images/ARAKU 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "Lush green hill station known for coffee plantations.",
     highlights: ["🕯️ Borra Caves", "☕ Coffee plantations", "🏺 Tribal Museum"],
     nearby: [
       { name: "Borra Caves", distance: "29 km", time: "45 mins", description: "Caves" },
@@ -626,9 +575,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Visakhapatnam (120 km)", railway: "Araku", bus: "Araku" },
     hotel: "₹2,000 - ₹7,000 per night",
-    rating: 4.6,
-    lat: 18.3289,
-    lng: 82.8756
+    rating: 4.6, lat: 18.3289, lng: 82.8756
   },
   {
     id: 28,
@@ -636,9 +583,9 @@ const destinationsDB = [
     state: "Andhra Pradesh",
     desc: "Jyotirlinga Temple",
     category: "temple",
-    img: "assets/images/srisailam.jpg",
-    images: ["assets/images/srisailam.jpg"],
-    overview: "One of the 12 Jyotirlinga temples dedicated to Lord Shiva.",
+    img: "assets/images/srisailam.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/SRISAILAM 1.jpg", "assets/images/SRISAILAM 2.webp", "assets/images/SRISAILAM 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "One of the 12 Jyotirlinga temples.",
     highlights: ["🛕 Mallikarjuna Swamy Temple", "🌊 Srisailam Dam", "🐅 Tiger Reserve"],
     nearby: [
       { name: "Srisailam Dam", distance: "2 km", time: "10 mins", description: "Dam" },
@@ -649,9 +596,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Hyderabad (213 km)", railway: "Markapuram", bus: "Srisailam" },
     hotel: "₹1,800 - ₹6,000 per night",
-    rating: 4.7,
-    lat: 16.0733,
-    lng: 78.8687
+    rating: 4.7, lat: 16.0733, lng: 78.8687
   },
   {
     id: 29,
@@ -659,9 +604,9 @@ const destinationsDB = [
     state: "Andhra Pradesh",
     desc: "Hanging Pillar",
     category: "temple",
-    img: "assets/images/lepakshi.jpg",
-    images: ["assets/images/lepakshi.jpg", "assets/images/lepaksi.jpg"],
-    overview: "Famous for the hanging pillar and beautiful Vijayanagara murals.",
+    img: "assets/images/lepakshi.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/LEPAKSHI 1.jpg", "assets/images/LEPAKSHI 2.cms", "assets/images/LEPAKSHI 3.jpg"], // NEW CAROUSEL IMAGES
+    overview: "Famous for the hanging pillar and beautiful murals.",
     highlights: ["🗿 Hanging Pillar", "🐂 Nandi Bull", "🎨 Veerabhadra Temple"],
     nearby: [
       { name: "Penukonda Fort", distance: "30 km", time: "45 mins", description: "Fort" },
@@ -672,9 +617,7 @@ const destinationsDB = [
     ],
     transport: { airport: "Bengaluru (100 km)", railway: "Hindupur", bus: "Lepakshi" },
     hotel: "₹1,500 - ₹5,000 per night",
-    rating: 4.5,
-    lat: 13.7997,
-    lng: 77.6101
+    rating: 4.5, lat: 13.7997, lng: 77.6101
   },
   {
     id: 30,
@@ -682,8 +625,8 @@ const destinationsDB = [
     state: "Andhra Pradesh",
     desc: "Grand Canyon",
     category: "hill",
-    img: "assets/images/gandikota.jpg",
-    images: ["assets/images/gandikota.jpg"],
+    img: "assets/images/gandikota.jpg",  // ORIGINAL COVER IMAGE (KEEP)
+    images: ["assets/images/GANDIKOTA 1.jpg", "assets/images/GANDIKOTA 2.jpg", "assets/images/GANDIKOTA 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "Known as the Grand Canyon of India with stunning gorge views.",
     highlights: ["🏰 Gandikota Fort", "🌊 River gorge", "🛕 Ranganatha Swamy Temple"],
     nearby: [
@@ -695,13 +638,11 @@ const destinationsDB = [
     ],
     transport: { airport: "Hyderabad (300 km)", railway: "Kadapa", bus: "Gandikota" },
     hotel: "₹1,800 - ₹6,000 per night",
-    rating: 4.6,
-    lat: 14.8128,
-    lng: 78.2854
+    rating: 4.6, lat: 14.8128, lng: 78.2854
   }
 ];
 
-// Function to display destinations
+// Function to display destinations (using original cover images)
 function displayDestinations(destinations) {
   const grid = document.getElementById('destinationsGrid');
   if (!grid) return;
@@ -736,12 +677,12 @@ function displayDestinations(destinations) {
   grid.innerHTML = html;
 }
 
-// Function to show destination detail with CAROUSEL
+// Function to show destination detail with NEW CAROUSEL IMAGES (3 images)
 function showDestinationDetail(id) {
   const dest = destinationsDB.find(d => d.id === id);
   if (!dest) return;
 
-  // Build carousel HTML
+  // Build carousel HTML with 3 images (new carousel images)
   let carouselIndicators = '';
   let carouselItems = '';
 
@@ -826,7 +767,6 @@ function showDestinationDetail(id) {
 }
 
 function bookFromModal(destinationName) {
-  // Show passenger selection modal
   const passengerModalHtml = `
         <div class="modal fade" id="passengerModal" tabindex="-1" data-bs-backdrop="static">
             <div class="modal-dialog">
