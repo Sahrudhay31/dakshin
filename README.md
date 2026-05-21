@@ -5,7 +5,7 @@
 [![EmailJS](https://img.shields.io/badge/EmailJS-OTP%20Verification-orange)](https://www.emailjs.com)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-> **Discover the Soul of South India** - A complete tourism platform featuring 30+ destinations, interactive maps, tour packages, and AI-powered trip planning.
+> **Discover the Soul of South India** - A complete tourism platform featuring 30+ destinations, interactive maps, tour packages, and  trip planning.
 
 ---
 
@@ -54,13 +54,13 @@
 ## ✨ Features
 
 ### 🏠 Home Page
-- ✅ Full-screen video background (South India visuals)
-- ✅ Interactive SimpleMaps integration
-- ✅ 5 state cards with 6 destinations each
-- ✅ Featured destinations section
-- ✅ Responsive design for all devices
+-  Full-screen video background (South India visuals)
+-  Interactive SimpleMaps integration
+-  5 state cards with 6 destinations each
+-  Featured destinations section
+-  Responsive design for all devices
 
-### 🗺️ Destinations Page
+###  Destinations Page
 - ✅ 30+ destinations with detailed info
 - ✅ Image carousel for each destination
 - ✅ 5+ nearby places with distance & time
