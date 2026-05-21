@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQs - Dakshin</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -15,100 +18,243 @@
         }
 
         body {
+
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #fef9f5;
+
+            background:
+                linear-gradient(135deg, #fef9f5, #fff4ec);
+
+            color: #0f172a;
         }
 
+        /* NAVBAR */
+
         .navbar {
+
             background: rgba(15, 23, 42, 0.96);
+
             backdrop-filter: blur(12px);
+
             padding: 1rem 0;
+
             position: fixed;
+
             width: 100%;
+
             top: 0;
+
             z-index: 2000;
         }
 
         .navbar-brand {
+
             font-size: 1.8rem;
+
             font-weight: 800;
-            background: linear-gradient(135deg, #f7c948, #ff6b35);
+
+            background:
+                linear-gradient(135deg, #f7c948, #ff6b35);
+
             -webkit-background-clip: text;
+
             background-clip: text;
+
             color: transparent;
         }
 
         .nav-link {
+
             color: #e2e8f0 !important;
+
             font-weight: 600;
+
             border-radius: 40px;
+
             padding: 0.5rem 1rem !important;
+
+            transition: 0.3s ease;
         }
 
         .nav-link:hover,
         .nav-link.active {
+
             background: rgba(212, 30, 60, 0.15);
+
             color: #ffb347 !important;
         }
 
+        /* PAGE HEADER */
+
         .page-header {
-            padding-top: 100px;
-            padding-bottom: 40px;
-            background: linear-gradient(135deg, #1a2a3a, #0f1a24);
+
+            padding-top: 130px;
+
+            padding-bottom: 70px;
+
+            background:
+                linear-gradient(135deg, #1a2a3a, #0f1a24);
+
             color: white;
+
             text-align: center;
+        }
+
+        .page-header h1 {
+
+            font-size: 3rem;
+
+            font-weight: 800;
+
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+
+            color: #cbd5e1;
+
+            font-size: 1.1rem;
+        }
+
+        /* FAQ SECTION */
+
+        .faq-section {
+
+            padding: 70px 0;
         }
 
         .faq-item {
-            background: white;
-            border-radius: 20px;
-            margin-bottom: 1rem;
+
+            margin-bottom: 22px;
+
+            border-radius: 24px;
+
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+            background: rgba(255, 255, 255, 0.96);
+
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s ease;
+        }
+
+        .faq-item:hover {
+
+            transform: translateY(-3px);
         }
 
         .faq-question {
+
             width: 100%;
-            text-align: left;
-            padding: 1.2rem 1.8rem;
-            background: white;
+
+            padding: 24px 28px;
+
             border: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
+
+            background: white;
+
+            color: #0f172a;
+
+            font-size: 1.05rem;
+
+            font-weight: 700;
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
         }
 
         .faq-question:hover {
-            background: #f8fafc;
+
+            background: #fff7f2;
         }
 
-        .faq-question:after {
-            content: '+';
+        .faq-icon {
+
             font-size: 1.5rem;
+
             color: #d41e3c;
+
+            transition: 0.3s ease;
         }
 
         .faq-answer {
-            padding: 0 1.8rem 1.2rem;
-            display: none;
+
+            max-height: 0;
+
+            overflow: hidden;
+
+            padding: 0 28px;
+
             color: #64748b;
-            line-height: 1.7;
+
+            line-height: 1.9;
+
+            background: white;
+
+            transition: all 0.4s ease;
         }
 
+        .faq-item.active .faq-answer {
+
+            max-height: 400px;
+
+            padding: 0 28px 26px;
+        }
+
+        .faq-item.active .faq-icon {
+
+            transform: rotate(45deg);
+        }
+
+        /* FOOTER */
+
         footer {
+
             background: #0f1a24;
+
             color: #94a3b8;
+
             text-align: center;
+
             padding: 2.5rem;
+
             margin-top: 60px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width:768px) {
+
+            .page-header h1 {
+
+                font-size: 2.2rem;
+            }
+
+            .faq-question {
+
+                font-size: 0.95rem;
+
+                padding: 20px;
+            }
+
+            .faq-answer {
+
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
 
 <body>
+
+    <!-- NAVBAR -->
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -118,75 +264,335 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
                     <li class="nav-item"><a class="nav-link" href="tourpackages.html">Tour Packages</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="openTripPlanner()">Trip Planner</a></li>
                     <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- PAGE HEADER -->
 
     <section class="page-header">
+
         <div class="container">
-            <h1>Frequently Asked Questions</h1>
-            <p class="lead">Find answers to common questions about South India travel</p>
+
+            <h1>
+                Frequently Asked Questions
+            </h1>
+
+            <p>
+                Everything you need to know before planning your South India journey
+            </p>
+
         </div>
+
     </section>
 
-    <section class="py-5">
+    <!-- FAQ SECTION -->
+
+    <section class="faq-section">
+
         <div class="container">
+
             <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">What is the best time
-                            to visit South India?</button>
-                        <div class="faq-answer">The best time is <strong>October to March</strong> (winter season).
-                            Weather is pleasant and perfect for sightseeing, backwater cruises, and hill station visits.
+
+                <div class="col-lg-9">
+
+                    <!-- FAQ -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+
+                            What is the best time to visit South India?
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            The ideal time to visit South India is between
+                            <strong>October and March</strong>,
+                            when the weather is pleasant for beaches,
+                            hill stations, temples, and sightseeing.
+                            Monsoon season is also popular in Kerala
+                            for nature tourism and Ayurvedic retreats.
+
                         </div>
+
                     </div>
-                    <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Do I need a visa to
-                            visit South India?</button>
-                        <div class="faq-answer">Foreign tourists need a valid Indian visa or e-Visa. Indian citizens can
-                            travel freely within the country. e-Visa can be applied online easily.</div>
-                    </div>
-                    <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">How can I book tour
-                            packages?</button>
-                        <div class="faq-answer">Click on any destination card → View Details → Click "Book This Package"
-                            button → You'll be redirected to our secure payment portal after login.</div>
-                    </div>
-                    <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Are the destinations
-                            safe for solo travelers?</button>
-                        <div class="faq-answer">Yes, South India is generally very safe for all travelers. We recommend
-                            using registered taxis, staying in well-reviewed hotels, and following local guidelines.
+
+                    <!-- FAQ -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+
+                            Which destinations are most popular in South India?
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Popular destinations include
+                            <strong>
+                                Munnar, Ooty, Coorg, Alleppey,
+                                Mysore, Hampi, Varkala,
+                                Tirupati, Mahabalipuram,
+                                and Hyderabad.
+                            </strong>
+
+                            These destinations are famous for
+                            beaches, heritage sites,
+                            waterfalls, temples,
+                            wildlife, and hill stations.
+
                         </div>
+
                     </div>
-                    <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">What is the currency
-                            used in South India?</button>
-                        <div class="faq-answer">Indian Rupee (₹). ATMs, UPI payments, and cards are widely accepted in
-                            all cities and tourist destinations.</div>
+
+                    <!-- FAQ -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+
+                            How many days are recommended for a South India trip?
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            A comfortable South India trip usually requires
+                            <strong>7 to 12 days</strong>.
+                            Short trips are suitable for exploring
+                            one state, while longer trips allow
+                            travelers to experience multiple destinations.
+
+                        </div>
+
                     </div>
-                    <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Can I customize my
-                            trip?</button>
-                        <div class="faq-answer">Yes! Use our Trip Planner feature or contact us directly to create a
-                            personalized itinerary based on your budget and interests.</div>
+
+                    <!-- FAQ -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+
+                            Are customized tour packages available?
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Yes. Travelers can customize itineraries
+                            based on budget, travel duration,
+                            preferred destinations,
+                            accommodation type,
+                            and travel interests
+                            using our Smart Trip Planner.
+
+                        </div>
+
                     </div>
+
+                    <!-- FAQ -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+
+                            How can I travel between destinations in South India?
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            South India has excellent connectivity through
+                            <strong>
+                                airports, railway networks,
+                                highways, buses, taxis,
+                                and metro services.
+                            </strong>
+
+                            Most tourist destinations are easily accessible
+                            through road and rail transport.
+
+                        </div>
+
+                    </div>
+
+                    <!-- FAQ -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+
+                            Is South India safe for solo and family travelers?
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Yes. South India is considered one of the safest
+                            tourist regions in India.
+                            Major tourist destinations are traveler-friendly,
+                            well connected, and suitable for
+                            solo travelers, families,
+                            and international tourists.
+
+                        </div>
+
+                    </div>
+
+                    <!-- FAQ -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+
+                            What types of accommodation are available?
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Travelers can choose from
+                            budget hotels, luxury resorts,
+                            eco-resorts, hostels,
+                            beach villas, homestays,
+                            and traditional Kerala houseboats
+                            depending on their budget and travel style.
+
+                        </div>
+
+                    </div>
+
+                    <!-- FAQ -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+
+                            Are online payments secure on Dakshin?
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Yes. Dakshin supports secure online payments
+                            through UPI, credit/debit cards,
+                            and net banking.
+                            Booking confirmations are generated
+                            instantly after successful payment.
+
+                        </div>
+
+                    </div>
+
+                    <!-- FAQ -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+
+                            Can I experience local food and culture during my trip?
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Absolutely. South India is famous for
+                            its rich culture and cuisine including
+                            <strong>
+                                Dosa, Idli, Kerala Sadya,
+                                Hyderabadi Biryani,
+                                filter coffee, temple festivals,
+                                Ayurveda, classical dance,
+                                and traditional arts.
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FAQ -->
+
+                    <div class="faq-item">
+
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+
+                            Do destination pages provide route guidance?
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            Yes. Destination pages include
+                            Google Maps integration,
+                            nearest airports,
+                            railway stations,
+                            transportation guidance,
+                            and directions to help travelers
+                            plan their journey easily.
+
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
+
+    <!-- FOOTER -->
 
     <footer>
-        <p>© 2026 Dakshin | South India's Ultimate Travel Guide</p>
+
+        <p>
+            © 2026 Dakshin | South India's Ultimate Travel Guide
+        </p>
+
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/trip-planner.js"></script>
+
     <script>
-        function toggleFAQ(btn) { const answer = btn.nextElementSibling; answer.style.display = answer.style.display === 'block' ? 'none' : 'block'; }
-        function openTripPlanner() { const modal = new bootstrap.Modal(document.getElementById('tripPlannerModal')); if (typeof loadPlannerForm === 'function') loadPlannerForm(); modal.show(); }
-        document.querySelectorAll('.faq-question').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.faq-answer').forEach(ans => { if (ans !== btn.nextElementSibling) ans.style.display = 'none'; }); }); });
+
+        function toggleFAQ(button) {
+
+            const faqItem = button.parentElement;
+
+            faqItem.classList.toggle("active");
+
+        }
+
     </script>
+
 </body>
 
 </html>

@@ -7,105 +7,11 @@
     <title>Login - Dakshin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a2a3a, #0f1a24);
-            min-height: 100vh;
-        }
-
-        .login-card {
-            background: white;
-            border-radius: 32px;
-            padding: 40px;
-            max-width: 450px;
-            width: 100%;
-            margin: 0 auto;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #f7c948, #ff6b35);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .btn-login {
-            background: linear-gradient(135deg, #d41e3c, #ff6b35);
-            border: none;
-            padding: 12px;
-            font-weight: 700;
-            border-radius: 50px;
-            width: 100%;
-            color: white;
-        }
-
-        .btn-login:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .input-group-custom {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .input-group-custom input {
-            width: 100%;
-            padding: 14px 16px 14px 45px;
-            border: 2px solid #e2e8f0;
-            border-radius: 16px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .input-group-custom input:focus {
-            outline: none;
-            border-color: #d41e3c;
-            box-shadow: 0 0 0 3px rgba(212, 30, 60, 0.1);
-        }
-
-        .input-group-custom i {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-        }
-
-        .error-message {
-            background: #fee2e2;
-            color: #dc2626;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .success-message {
-            background: #d1fae5;
-            color: #059669;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        @media (max-width: 480px) {
-            .login-card {
-                padding: 30px 25px;
-                margin: 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">✨ Dakshin</a>
@@ -118,100 +24,64 @@
                     <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
                     <li class="nav-item"><a class="nav-link" href="tourpackages.html">Tour Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
+                    <li class="nav-item" id="authNavItem"><a class="nav-link" id="authLink" href="login.html">Sign
+                            In</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh; padding: 100px 20px 60px;">
-        <div class="login-card">
-            <div class="logo">✨ Dakshin</div>
-            <h3 class="text-center mb-2">Welcome Back!</h3>
-            <p class="text-center text-muted mb-4">Login to continue your travel journey</p>
+    <div class="auth-card">
+        <div class="logo">✨ Dakshin</div>
+        <h3 class="text-center mb-2">Welcome Back!</h3>
+        <p class="text-center text-muted mb-4">Login to continue your travel journey</p>
 
-            <div id="errorMessage" class="error-message"></div>
-            <div id="successMessage" class="success-message"></div>
+        <div id="errorMessage" class="alert alert-danger d-none"></div>
 
-            <form id="loginForm" onsubmit="handleLogin(event)">
-                <div class="input-group-custom">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" id="loginEmail" placeholder="Email Address" required>
-                </div>
-                <div class="input-group-custom">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" id="loginPassword" placeholder="Password" required>
-                </div>
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <label class="d-flex align-items-center gap-2"><input type="checkbox" id="rememberMe"> <span
-                            class="small">Remember Me</span></label>
-                    <a href="#" class="text-danger small text-decoration-none" onclick="forgotPassword(event)">Forgot
-                        Password?</a>
-                </div>
-                <button type="submit" class="btn-login"><i class="fas fa-sign-in-alt me-2"></i>Login</button>
-            </form>
-            <div class="text-center mt-4 pt-3 border-top">
-                <p class="small">Don't have an account? <a href="signup.html"
-                        class="text-danger text-decoration-none fw-bold">Create Account</a></p>
+        <form id="loginForm">
+            <div class="input-group-custom">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="loginEmail" placeholder="Email Address" required>
             </div>
+            <div class="input-group-custom">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100"><i class="fas fa-sign-in-alt me-2"></i>Login</button>
+        </form>
+        <div class="text-center mt-4 pt-3 border-top">
+            <p class="small">Don't have an account? <a href="signup.html"
+                    class="text-danger text-decoration-none fw-bold">Create Account</a></p>
         </div>
     </div>
+
+    <footer>
+        <p>© 2026 Dakshin | South India's Ultimate Travel Guide</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/auth.js"></script>
     <script>
-        function handleLogin(event) {
-            event.preventDefault();
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
-
-            if (!email || !password) {
-                showError('Please enter email and password');
-                return;
-            }
-
             const users = getUsers();
             const user = users.find(u => u.email === email && u.password === password);
+            const errorDiv = document.getElementById('errorMessage');
 
             if (user) {
                 const { password, ...safeUser } = user;
                 localStorage.setItem('dakshin_current_user', JSON.stringify(safeUser));
-                showSuccess('Login successful! Redirecting...');
-                setTimeout(() => {
-                    const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
-                    if (redirectUrl) {
-                        sessionStorage.removeItem('redirectAfterLogin');
-                        window.location.href = redirectUrl;
-                    } else {
-                        window.location.href = 'index.html';
-                    }
-                }, 1500);
+                const redirect = sessionStorage.getItem('redirectAfterLogin') || 'index.html';
+                sessionStorage.removeItem('redirectAfterLogin');
+                window.location.href = redirect;
             } else {
-                showError('Invalid email or password');
+                errorDiv.textContent = 'Invalid email or password';
+                errorDiv.classList.remove('d-none');
+                setTimeout(() => errorDiv.classList.add('d-none'), 3000);
             }
-        }
-
-        function forgotPassword(e) {
-            e.preventDefault();
-            alert("📧 Please contact support@dakshin.com to reset your password.");
-        }
-
-        function showError(message) {
-            const errorDiv = document.getElementById('errorMessage');
-            const successDiv = document.getElementById('successMessage');
-            errorDiv.textContent = message;
-            errorDiv.style.display = 'block';
-            if (successDiv) successDiv.style.display = 'none';
-            setTimeout(() => { errorDiv.style.display = 'none'; }, 4000);
-        }
-
-        function showSuccess(message) {
-            const successDiv = document.getElementById('successMessage');
-            const errorDiv = document.getElementById('errorMessage');
-            successDiv.textContent = message;
-            successDiv.style.display = 'block';
-            if (errorDiv) errorDiv.style.display = 'none';
-            setTimeout(() => { successDiv.style.display = 'none'; }, 3000);
-        }
+        });
 
         const urlParams = new URLSearchParams(window.location.search);
         const redirectUrl = urlParams.get('redirect');

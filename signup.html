@@ -7,128 +7,11 @@
     <title>Sign Up - Dakshin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a2a3a, #0f1a24);
-            min-height: 100vh;
-            padding: 100px 20px 60px;
-        }
-
-        .signup-card {
-            background: white;
-            border-radius: 32px;
-            padding: 40px;
-            max-width: 550px;
-            width: 100%;
-            margin: 0 auto;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #f7c948, #ff6b35);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .btn-signup {
-            background: linear-gradient(135deg, #d41e3c, #ff6b35);
-            border: none;
-            padding: 12px;
-            font-weight: 700;
-            border-radius: 50px;
-            width: 100%;
-            color: white;
-        }
-
-        .input-group-custom {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .input-group-custom input {
-            width: 100%;
-            padding: 14px 16px 14px 45px;
-            border: 2px solid #e2e8f0;
-            border-radius: 16px;
-            font-size: 1rem;
-        }
-
-        .input-group-custom input:focus {
-            outline: none;
-            border-color: #d41e3c;
-            box-shadow: 0 0 0 3px rgba(212, 30, 60, 0.1);
-        }
-
-        .input-group-custom i {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .error-message {
-            background: #fee2e2;
-            color: #dc2626;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .success-message {
-            background: #d1fae5;
-            color: #059669;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .password-strength {
-            margin-top: 8px;
-            font-size: 0.7rem;
-        }
-
-        .strength-weak {
-            color: #dc2626;
-        }
-
-        .strength-medium {
-            color: #f59e0b;
-        }
-
-        .strength-strong {
-            color: #10b981;
-        }
-
-        @media (max-width: 640px) {
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-
-            .signup-card {
-                padding: 30px 25px;
-                margin: 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">✨ Dakshin</a>
@@ -141,20 +24,21 @@
                     <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
                     <li class="nav-item"><a class="nav-link" href="tourpackages.html">Tour Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
+                    <li class="nav-item" id="authNavItem"><a class="nav-link" id="authLink" href="login.html">Sign
+                            In</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="signup-card">
+    <div class="auth-card" style="max-width: 550px;">
         <div class="logo">✨ Dakshin</div>
         <h3 class="text-center mb-2">Create an Account</h3>
         <p class="text-center text-muted mb-4">Join us to start your South India adventure</p>
 
-        <div id="errorMessage" class="error-message"></div>
-        <div id="successMessage" class="success-message"></div>
+        <div id="errorMessage" class="alert alert-danger d-none"></div>
 
-        <form id="signupForm" onsubmit="handleSignup(event)">
+        <form id="signupForm">
             <div class="form-row">
                 <div class="input-group-custom"><i class="fas fa-user"></i><input type="text" id="fullName"
                         placeholder="Full Name *" required></div>
@@ -168,16 +52,15 @@
             </div>
             <div class="form-row">
                 <div class="input-group-custom"><i class="fas fa-lock"></i><input type="password" id="password"
-                        placeholder="Password *" required onkeyup="checkPasswordStrength()"></div>
+                        placeholder="Password *" required></div>
                 <div class="input-group-custom"><i class="fas fa-check-circle"></i><input type="password"
                         id="confirmPassword" placeholder="Confirm Password *" required></div>
             </div>
-            <div id="passwordStrength" class="password-strength"></div>
             <div class="d-flex align-items-center gap-2 mb-4 mt-3">
                 <input type="checkbox" id="termsCheckbox" required> <label class="small">I agree to the <a href="#"
-                        class="text-danger" onclick="showTerms(event)">Terms of Service</a></label>
+                        class="text-danger" onclick="alert('Terms of Service')">Terms of Service</a></label>
             </div>
-            <button type="submit" class="btn-signup"><i class="fas fa-user-plus me-2"></i>Sign Up</button>
+            <button type="submit" class="btn btn-primary w-100"><i class="fas fa-user-plus me-2"></i>Sign Up</button>
         </form>
         <div class="text-center mt-4 pt-3 border-top">
             <p class="small">Already have an account? <a href="login.html"
@@ -185,95 +68,29 @@
         </div>
     </div>
 
+    <footer>
+        <p>© 2026 Dakshin | South India's Ultimate Travel Guide</p>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/auth.js"></script>
     <script>
-        function handleSignup(event) {
-            event.preventDefault();
-
+        document.getElementById('signupForm').addEventListener('submit', function (e) {
+            e.preventDefault();
             const fullName = document.getElementById('fullName').value.trim();
             const username = document.getElementById('username').value.trim();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const dob = document.getElementById('dob').value;
-            const termsChecked = document.getElementById('termsCheckbox').checked;
-
-            if (!fullName || !username || !email || !password) {
-                showError('Please fill in all required fields');
-                return;
-            }
-            if (password !== confirmPassword) {
-                showError('Passwords do not match');
-                return;
-            }
-            if (password.length < 6) {
-                showError('Password must be at least 6 characters');
-                return;
-            }
-            if (!termsChecked) {
-                showError('Please agree to the Terms of Service');
-                return;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showError('Please enter a valid email address');
-                return;
-            }
-
-            const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
-            if (!usernameRegex.test(username)) {
-                showError('Username must be 3-20 characters (letters, numbers, underscore only)');
-                return;
-            }
-
-            const result = registerUser(fullName, username, email, password, dob);
-
-            if (result.success) {
-                showSuccess('Account created successfully! Redirecting...');
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
-            } else {
-                showError(result.message);
-            }
-        }
-
-        function checkPasswordStrength() {
-            const pwd = document.getElementById('password').value;
-            const div = document.getElementById('passwordStrength');
-            if (!pwd.length) { div.innerHTML = ''; return; }
-            let s = 0;
-            if (pwd.length >= 8) s++;
-            if (pwd.match(/[a-z]/)) s++;
-            if (pwd.match(/[A-Z]/)) s++;
-            if (pwd.match(/[0-9]/)) s++;
-            if (pwd.match(/[^a-zA-Z0-9]/)) s++;
-            if (s <= 2) { div.innerHTML = '🔴 Weak password'; div.className = 'password-strength strength-weak'; }
-            else if (s <= 4) { div.innerHTML = '🟡 Medium password'; div.className = 'password-strength strength-medium'; }
-            else { div.innerHTML = '🟢 Strong password'; div.className = 'password-strength strength-strong'; }
-        }
-
-        function showError(message) {
+            const confirm = document.getElementById('confirmPassword').value;
             const errorDiv = document.getElementById('errorMessage');
-            const successDiv = document.getElementById('successMessage');
-            errorDiv.textContent = message;
-            errorDiv.style.display = 'block';
-            if (successDiv) successDiv.style.display = 'none';
-            setTimeout(() => { errorDiv.style.display = 'none'; }, 4000);
-        }
 
-        function showSuccess(message) {
-            const successDiv = document.getElementById('successMessage');
-            const errorDiv = document.getElementById('errorMessage');
-            successDiv.textContent = message;
-            successDiv.style.display = 'block';
-            if (errorDiv) errorDiv.style.display = 'none';
-            setTimeout(() => { successDiv.style.display = 'none'; }, 3000);
-        }
+            if (password !== confirm) { errorDiv.textContent = 'Passwords do not match'; errorDiv.classList.remove('d-none'); setTimeout(() => errorDiv.classList.add('d-none'), 3000); return; }
+            if (password.length < 6) { errorDiv.textContent = 'Password must be at least 6 characters'; errorDiv.classList.remove('d-none'); setTimeout(() => errorDiv.classList.add('d-none'), 3000); return; }
 
-        function showTerms(e) { e.preventDefault(); alert("📜 Terms of Service:\n\n1. All bookings are subject to availability.\n2. Cancellation policy applies as per package.\n3. Prices may vary based on season.\n4. Valid ID proof required at check-in."); }
+            const result = registerUser(fullName, username, email, password, '');
+            if (result.success) { window.location.href = 'index.html'; }
+            else { errorDiv.textContent = result.message; errorDiv.classList.remove('d-none'); setTimeout(() => errorDiv.classList.add('d-none'), 3000); }
+        });
     </script>
 </body>
 
