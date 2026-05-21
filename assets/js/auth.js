@@ -1,9 +1,10 @@
-// Authentication System - Complete
+// Authentication System - Simple Email/Password
 
 const USERS_KEY = 'dakshin_users';
 const CURRENT_USER_KEY = 'dakshin_current_user';
 const BOOKINGS_KEY = 'dakshin_bookings';
 
+// Initialize default users
 function initUsers() {
     if (!localStorage.getItem(USERS_KEY)) {
         const defaultUsers = [
@@ -13,41 +14,37 @@ function initUsers() {
     }
 }
 
+// Get all users
 function getUsers() {
     return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
 }
 
+// Save users
 function saveUsers(users) {
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
+// Check if logged in
 function isLoggedIn() {
     return localStorage.getItem(CURRENT_USER_KEY) !== null;
 }
 
+// Get current user
 function getCurrentUser() {
     return JSON.parse(localStorage.getItem(CURRENT_USER_KEY));
 }
 
-function loginUser(emailOrUsername, password) {
-    const users = getUsers();
-    const user = users.find(u => (u.email === emailOrUsername || u.username === emailOrUsername) && u.password === password);
-    if (user) {
-        const { password, ...safeUser } = user;
-        localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(safeUser));
-        return { success: true, user: safeUser };
-    }
-    return { success: false, message: "Invalid email/username or password" };
-}
-
+// Register new user
 function registerUser(fullName, username, email, password, dob) {
     const users = getUsers();
+
     if (users.some(u => u.username === username)) {
         return { success: false, message: "Username already taken" };
     }
     if (users.some(u => u.email === email)) {
         return { success: false, message: "Email already registered" };
     }
+
     const newUser = {
         id: users.length + 1,
         fullName,
@@ -55,22 +52,26 @@ function registerUser(fullName, username, email, password, dob) {
         email,
         password,
         dob: dob || "",
-        createdAt: new Date().toISOString(),
-        bookings: []
+        createdAt: new Date().toISOString()
     };
+
     users.push(newUser);
     saveUsers(users);
+
     const { password: _, ...safeUser } = newUser;
     localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(safeUser));
+
     return { success: true, user: safeUser };
 }
 
+// Logout
 function logoutUser() {
     localStorage.removeItem(CURRENT_USER_KEY);
     sessionStorage.removeItem('redirectAfterLogin');
     window.location.href = 'index.html';
 }
 
+// Save booking
 function saveBooking(packageName, amount) {
     const user = getCurrentUser();
     if (!user) return false;
@@ -89,6 +90,7 @@ function saveBooking(packageName, amount) {
     return true;
 }
 
+// Get user bookings
 function getUserBookings() {
     const user = getCurrentUser();
     if (!user) return [];
@@ -96,6 +98,7 @@ function getUserBookings() {
     return bookings.filter(b => b.userId === user.id);
 }
 
+// Update navbar with user info
 function updateNavbarUser() {
     const user = getCurrentUser();
     const navLinks = document.querySelector('.navbar-nav');
@@ -123,6 +126,7 @@ function updateNavbarUser() {
     }
 }
 
+// View profile
 function viewProfile() {
     const user = getCurrentUser();
     if (user) {
@@ -130,6 +134,7 @@ function viewProfile() {
     }
 }
 
+// View bookings
 function viewBookings() {
     const bookings = getUserBookings();
     if (bookings.length === 0) {
@@ -137,7 +142,7 @@ function viewBookings() {
     } else {
         let message = "📋 My Bookings:\n\n";
         bookings.forEach((booking, index) => {
-            message += `${index + 1}. ${booking.packageName}\n   Date: ${new Date(booking.bookingDate).toLocaleDateString()}\n   Status: ${booking.status}\n\n`;
+            message += `${index + 1}. ${booking.packageName}\n   Date: ${new Date(booking.bookingDate).toLocaleDateString()}\n   Amount: ₹${booking.amount}\n   Status: ${booking.status}\n\n`;
         });
         alert(message);
     }
