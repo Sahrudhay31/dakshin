@@ -4,17 +4,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment - Dakshin</title>
+    <title>Secure Payment - Dakshin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Payment Page Specific Styles */
+        .payment-container {
+            max-width: 550px;
+            margin: 100px auto 60px;
+            padding: 0 20px;
+        }
+
+        .payment-card {
+            background: white;
+            border-radius: 32px;
+            padding: 35px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .payment-header .lock-icon {
+            background: #10b98120;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .payment-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #1e2a3e;
+        }
+
+        .payment-header p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .booking-summary {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .summary-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1e2a3e;
+            border-left: 3px solid #d41e3c;
+            padding-left: 12px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .summary-value {
+            font-weight: 600;
+            color: #1e2a3e;
+        }
+
+        .total-row {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px dashed #d41e3c;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #d41e3c;
+        }
+
+        .payment-methods {
+            margin-bottom: 25px;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 18px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .payment-method:hover {
+            border-color: #d41e3c;
+            background: rgba(212, 30, 60, 0.03);
+            transform: translateX(5px);
+        }
+
+        .payment-method.selected {
+            border-color: #d41e3c;
+            background: rgba(212, 30, 60, 0.05);
+            box-shadow: 0 5px 15px rgba(212, 30, 60, 0.1);
+        }
+
+        .payment-method i {
+            font-size: 1.8rem;
+        }
+
+        .payment-method .method-name {
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .payment-method .check-icon {
+            color: #10b981;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .payment-method.selected .check-icon {
+            opacity: 1;
+        }
+
+        .payment-fields {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+            color: #1e2a3e;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #d41e3c;
+            box-shadow: 0 0 0 3px rgba(212, 30, 60, 0.1);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .pay-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #d41e3c, #ff6b35);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .pay-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 30, 60, 0.3);
+        }
+
+        .pay-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .alert-custom {
+            background: #d1fae5;
+            border: none;
+            border-radius: 16px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 576px) {
+            .payment-card {
+                padding: 25px;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">✨ Dakshin</a>
+            <a class="navbar-brand logo" href="index.html">
+                <div class="logo-container">
+                    <img src="assets/images/logo.jpg" alt="Dakshin Logo" class="logo-img"
+                        onerror="this.style.display='none'">
+                    <div>
+                        <div class="logo-text">Dakshin</div>
+                        <div class="logo-subtitle">SOUTH INDIA • ENDLESS DISCOVERIES</div>
+                    </div>
+                </div>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon bg-white"></span>
             </button>
@@ -23,6 +282,7 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
                     <li class="nav-item"><a class="nav-link" href="tourpackages.html">Tour Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="openTripPlanner()">Trip Planner</a></li>
                     <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
                     <li class="nav-item" id="authNavItem"><a class="nav-link" id="authLink" href="login.html">Sign
                             In</a></li>
@@ -31,105 +291,450 @@
         </div>
     </nav>
 
-    <div class="container" style="max-width: 600px; margin-top: 100px; margin-bottom: 60px;">
-        <div class="auth-card">
-            <div class="text-center mb-3"><i class="fas fa-lock fa-3x text-success"></i>
-                <h3 class="mt-2">Secure Payment Portal</h3>
-                <p class="text-muted">Complete your booking with confidence</p>
+    <div class="payment-container">
+        <div class="payment-card">
+            <div class="payment-header">
+                <div class="lock-icon"><i class="fas fa-lock fa-2x text-success"></i></div>
+                <h2>Secure Payment</h2>
+                <p>Complete your booking with confidence</p>
             </div>
 
-            <div class="payment-summary">
-                <h5 class="mb-3">📋 Booking Summary</h5>
-                <div class="summary-row"><span>Package:</span><strong id="packageName">-</strong></div>
-                <div class="summary-row"><span>Travelers:</span><strong id="travelersCount">2</strong></div>
-                <div class="summary-row"><span>Price per Person:</span><strong>₹12,500</strong></div>
-                <div class="total-amount"><span>Total Amount:</span><strong id="totalAmount">₹25,000</strong></div>
+            <div id="welcomeAlert" class="alert-custom" style="display: none;">
+                <i class="fas fa-user-check text-success"></i>
+                <span id="welcomeMessage"></span>
             </div>
 
-            <h6 class="mb-3">Select Payment Method</h6>
-            <div class="payment-method selected" data-method="credit" onclick="selectPaymentMethod('credit')"><i
-                    class="fab fa-cc-visa fa-2x"></i><i class="fab fa-cc-mastercard fa-2x"></i><span><strong>Credit /
-                        Debit Card</strong></span></div>
-            <div class="payment-method" data-method="upi" onclick="selectPaymentMethod('upi')"><i
-                    class="fas fa-mobile-alt fa-2x text-success"></i><span><strong>UPI / Google Pay /
-                        PhonePe</strong></span></div>
-            <div class="payment-method" data-method="netbanking" onclick="selectPaymentMethod('netbanking')"><i
-                    class="fas fa-university fa-2x text-primary"></i><span><strong>Net Banking</strong></span></div>
+            <div class="booking-summary">
+                <div class="summary-title">📋 Booking Summary</div>
+                <div class="summary-row"><span class="summary-label">Package</span><span class="summary-value"
+                        id="packageName">-</span></div>
+                <div class="summary-row"><span class="summary-label">Travel Date</span><span class="summary-value"
+                        id="travelDate">-</span></div>
+                <div class="summary-row"><span class="summary-label">Passengers</span><span class="summary-value"
+                        id="passengersCount">2</span></div>
+                <div class="summary-row"><span class="summary-label">Price per Person</span><span class="summary-value"
+                        id="pricePerPerson">₹12,500</span></div>
+                <div class="total-row"><span>Total Amount</span><span id="totalAmount">-</span></div>
+            </div>
 
-            <div id="cardDetails" class="card-details active">
-                <h6>Card Details</h6>
-                <input type="text" class="form-control mb-2" id="cardNumber" placeholder="Card Number">
-                <div class="row">
-                    <div class="col-6"><input type="text" class="form-control" id="expiry" placeholder="MM/YY"></div>
-                    <div class="col-6"><input type="password" class="form-control" id="cvv" placeholder="CVV"></div>
+            <div class="payment-methods">
+                <div class="payment-method selected" data-method="card" onclick="selectMethod('card')">
+                    <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i>
+                    <span class="method-name">Credit / Debit Card</span>
+                    <i class="fas fa-check-circle check-icon"></i>
                 </div>
-                <input type="text" class="form-control mt-2" id="cardName" placeholder="Cardholder Name">
-            </div>
-            <div id="upiDetails" class="card-details">
-                <h6>UPI Payment</h6><input type="text" class="form-control" id="upiId"
-                    placeholder="yourname@okhdfcbank">
-                <p class="small text-muted mt-2">You'll receive a payment request on your UPI app</p>
-            </div>
-            <div id="netbankingDetails" class="card-details">
-                <h6>Net Banking</h6><select class="form-select" id="bankSelect">
-                    <option value="">Select your bank</option>
-                    <option>SBI - State Bank of India</option>
-                    <option>HDFC Bank</option>
-                    <option>ICICI Bank</option>
-                    <option>Axis Bank</option>
-                    <option>Kotak Mahindra Bank</option>
-                </select>
+                <div class="payment-method" data-method="upi" onclick="selectMethod('upi')">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span class="method-name">UPI / Google Pay / PhonePe</span>
+                    <i class="fas fa-check-circle check-icon"></i>
+                </div>
+                <div class="payment-method" data-method="netbanking" onclick="selectMethod('netbanking')">
+                    <i class="fas fa-university"></i>
+                    <span class="method-name">Net Banking</span>
+                    <i class="fas fa-check-circle check-icon"></i>
+                </div>
             </div>
 
-            <button class="btn-pay" onclick="processPayment()"><i class="fas fa-rupee-sign me-2"></i>Pay Now & Confirm
-                Booking</button>
+            <div id="cardFields" class="payment-fields">
+                <div class="form-group"><label>Card Number</label><input type="text" id="cardNumber"
+                        placeholder="1234 5678 9012 3456" maxlength="19"></div>
+                <div class="input-row">
+                    <div class="form-group"><label>Expiry Date</label><input type="text" id="expiry" placeholder="MM/YY"
+                            maxlength="5"></div>
+                    <div class="form-group"><label>CVV</label><input type="password" id="cvv" placeholder="***"
+                            maxlength="3"></div>
+                </div>
+                <div class="form-group"><label>Cardholder Name</label><input type="text" id="cardName"
+                        placeholder="As on card"></div>
+            </div>
+
+            <div id="upiFields" class="payment-fields" style="display: none;">
+                <div class="form-group"><label>UPI ID</label><input type="text" id="upiId"
+                        placeholder="yourname@okhdfcbank"></div>
+                <div class="alert alert-info mt-2 mb-0 py-2 small"><i class="fas fa-info-circle"></i> You'll receive a
+                    payment request on your UPI app</div>
+            </div>
+
+            <div id="netbankingFields" class="payment-fields" style="display: none;">
+                <div class="form-group"><label>Select Bank</label>
+                    <select id="bankSelect">
+                        <option value="">-- Select your bank --</option>
+                        <option>SBI - State Bank of India</option>
+                        <option>HDFC Bank</option>
+                        <option>ICICI Bank</option>
+                        <option>Axis Bank</option>
+                        <option>Kotak Mahindra Bank</option>
+                        <option>Yes Bank</option>
+                        <option>PNB - Punjab National Bank</option>
+                        <option>Bank of Baroda</option>
+                        <option>Canara Bank</option>
+                    </select>
+                </div>
+                <div class="alert alert-info mt-2 mb-0 py-2 small"><i class="fas fa-info-circle"></i> You'll be
+                    redirected to your bank's secure login page</div>
+            </div>
+
+            <button class="pay-btn" id="payBtn" onclick="processPayment()"><i class="fas fa-rupee-sign"></i> Pay Now
+                <span id="payAmount" class="ms-1"></span></button>
+
+            <div class="security-badges">
+                <span class="security-badge"><i class="fas fa-shield-alt text-success"></i> 256-bit SSL Secure</span>
+                <span class="security-badge"><i class="fas fa-lock text-success"></i> PCI Compliant</span>
+                <span class="security-badge"><i class="fas fa-credit-card text-success"></i> No hidden charges</span>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>© 2026 Dakshin | South India's Ultimate Travel Guide</p>
+    <!-- Improved Horizontal Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Horizontal Footer Layout -->
+            <div class="footer-horizontal">
+                <div class="footer-section">
+                    <div class="footer-logo">✨ Dakshin</div>
+                    <p>South India's Ultimate Travel Guide</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="tourpackages.html">Tour Packages</a></li>
+                        <li><a href="#" onclick="openTripPlanner()">Trip Planner</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cancellation Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:support@dakshin.com">support@dakshin.com</a>
+                        </li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+919876543210">+91 98765 43210</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Bangalore, India</li>
+                    </ul>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                        <i class="fab fa-google-pay"></i>
+                        <i class="fab fa-apple-pay"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Dakshin | All Rights Reserved</p>
+                <p class="small">🌿 30+ Destinations | 🏨 100+ Hotels | ✨ AI Trip Planner</p>
+            </div>
+        </div>
     </footer>
+
+    <style>
+        /* Horizontal Footer Styles */
+        .footer {
+            background: #0a0f1c;
+            color: #94a3b8;
+            padding: 50px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .footer-horizontal {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f7c948, #ff6b35);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .footer-section h4 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ff6b35;
+            padding-left: 5px;
+        }
+
+        .footer-section ul li i {
+            margin-right: 8px;
+            width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: #94a3b8;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: #ff6b35;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .payment-icons i {
+            font-size: 1.8rem;
+            color: #64748b;
+            transition: all 0.3s;
+        }
+
+        .payment-icons i:hover {
+            color: #ff6b35;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            text-align: center;
+        }
+
+        .footer-bottom .small {
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-horizontal {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .social-links,
+            .payment-icons {
+                justify-content: center;
+            }
+
+            .footer-section ul li i {
+                width: auto;
+            }
+        }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/auth.js"></script>
     <script>
-        (function () { if (!localStorage.getItem('dakshin_current_user')) { window.location.href = 'login.html?redirect=payment.html'; return; } const user = JSON.parse(localStorage.getItem('dakshin_current_user')); if (user) document.querySelector('.auth-card').insertAdjacentHTML('afterbegin', `<div class="alert alert-success mb-3"><i class="fas fa-user-check"></i> Welcome back, ${user.fullName}!</div>`); })();
+        // Check login
+        (function () {
+            if (!localStorage.getItem('dakshin_current_user')) {
+                sessionStorage.setItem('redirectAfterLogin', 'payment.html');
+                window.location.href = 'login.html?redirect=payment.html';
+                return;
+            }
 
-        let selectedPackage = localStorage.getItem('selectedPackage') || 'South India Tour Package';
+            const user = JSON.parse(localStorage.getItem('dakshin_current_user'));
+            if (user) {
+                const welcomeDiv = document.getElementById('welcomeAlert');
+                const welcomeMsg = document.getElementById('welcomeMessage');
+                welcomeMsg.textContent = `Welcome back, ${user.fullName}! Your booking is secure.`;
+                welcomeDiv.style.display = 'flex';
+            }
+        })();
+
+        // Load booking details
+        let bookingData = {};
+        let selectedPackage = '';
+        let passengers = 2;
+        let pricePerPerson = 12500;
+        let travelDate = new Date().toISOString().split('T')[0];
+        let total = 0;
+
+        try {
+            const storedBooking = localStorage.getItem('currentBooking');
+            if (storedBooking) {
+                bookingData = JSON.parse(storedBooking);
+                selectedPackage = bookingData.packageName || 'South India Tour Package';
+                passengers = bookingData.passengers || 2;
+                pricePerPerson = bookingData.pricePerPerson || 12500;
+                travelDate = bookingData.travelDate || new Date().toISOString().split('T')[0];
+                total = passengers * pricePerPerson;
+            } else {
+                selectedPackage = localStorage.getItem('selectedPackage') || 'South India Tour Package';
+                total = passengers * pricePerPerson;
+            }
+        } catch (e) {
+            selectedPackage = localStorage.getItem('selectedPackage') || 'South India Tour Package';
+            total = passengers * pricePerPerson;
+        }
+
         document.getElementById('packageName').textContent = selectedPackage;
-        let travelers = 2, pricePerPerson = 12500;
-        function updateTotal() { document.getElementById('totalAmount').innerHTML = `₹${(travelers * pricePerPerson).toLocaleString()}`; }
-        updateTotal();
+        document.getElementById('travelDate').textContent = travelDate;
+        document.getElementById('passengersCount').textContent = passengers;
+        document.getElementById('pricePerPerson').innerHTML = `₹${pricePerPerson.toLocaleString()}`;
+        document.getElementById('totalAmount').innerHTML = `₹${total.toLocaleString()}`;
+        document.getElementById('payAmount').textContent = `₹${total.toLocaleString()}`;
 
-        function selectPaymentMethod(method) {
+        let selectedMethod = 'card';
+
+        function selectMethod(method) {
+            selectedMethod = method;
             document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
             document.querySelector(`.payment-method[data-method="${method}"]`).classList.add('selected');
-            document.getElementById('cardDetails').classList.remove('active');
-            document.getElementById('upiDetails').classList.remove('active');
-            document.getElementById('netbankingDetails').classList.remove('active');
-            if (method === 'credit') document.getElementById('cardDetails').classList.add('active');
-            else if (method === 'upi') document.getElementById('upiDetails').classList.add('active');
-            else if (method === 'netbanking') document.getElementById('netbankingDetails').classList.add('active');
+            document.getElementById('cardFields').style.display = method === 'card' ? 'block' : 'none';
+            document.getElementById('upiFields').style.display = method === 'upi' ? 'block' : 'none';
+            document.getElementById('netbankingFields').style.display = method === 'netbanking' ? 'block' : 'none';
+        }
+
+        // Format card number
+        const cardInput = document.getElementById('cardNumber');
+        if (cardInput) {
+            cardInput.addEventListener('input', function (e) {
+                let value = this.value.replace(/\s/g, '');
+                if (value.length > 16) value = value.slice(0, 16);
+                let formatted = value.match(/.{1,4}/g)?.join(' ') || value;
+                this.value = formatted;
+            });
+        }
+
+        // Format expiry
+        const expiryInput = document.getElementById('expiry');
+        if (expiryInput) {
+            expiryInput.addEventListener('input', function (e) {
+                let value = this.value.replace(/\//g, '');
+                if (value.length >= 2) {
+                    this.value = value.slice(0, 2) + '/' + value.slice(2, 4);
+                }
+            });
         }
 
         function processPayment() {
-            const method = document.querySelector('.payment-method.selected').dataset.method;
             let isValid = true;
-            if (method === 'credit') { if (!document.getElementById('cardNumber').value || !document.getElementById('expiry').value || !document.getElementById('cvv').value) isValid = false; }
-            else if (method === 'upi') { if (!document.getElementById('upiId').value || !document.getElementById('upiId').value.includes('@')) isValid = false; }
-            else if (method === 'netbanking') { if (!document.getElementById('bankSelect').value) isValid = false; }
-            if (isValid) {
-                const bookings = JSON.parse(localStorage.getItem('dakshin_bookings') || '[]');
+            let errorMsg = '';
+
+            if (selectedMethod === 'card') {
+                const cardNum = document.getElementById('cardNumber').value.replace(/\s/g, '');
+                const expiry = document.getElementById('expiry').value;
+                const cvv = document.getElementById('cvv').value;
+                const cardName = document.getElementById('cardName').value;
+
+                if (!cardNum || cardNum.length < 15) { isValid = false; errorMsg = 'Please enter a valid card number'; }
+                else if (!expiry || expiry.length < 5) { isValid = false; errorMsg = 'Please enter valid expiry date'; }
+                else if (!cvv || cvv.length < 3) { isValid = false; errorMsg = 'Please enter valid CVV'; }
+                else if (!cardName) { isValid = false; errorMsg = 'Please enter cardholder name'; }
+            } else if (selectedMethod === 'upi') {
+                const upiId = document.getElementById('upiId').value;
+                if (!upiId || !upiId.includes('@')) { isValid = false; errorMsg = 'Please enter a valid UPI ID (example@bank)'; }
+            } else if (selectedMethod === 'netbanking') {
+                const bank = document.getElementById('bankSelect').value;
+                if (!bank) { isValid = false; errorMsg = 'Please select your bank'; }
+            }
+
+            if (!isValid) { alert(`❌ ${errorMsg}`); return; }
+
+            const payBtn = document.getElementById('payBtn');
+            payBtn.disabled = true;
+            payBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+            setTimeout(() => {
                 const user = JSON.parse(localStorage.getItem('dakshin_current_user'));
-                bookings.push({ id: Date.now(), userId: user.id, packageName: selectedPackage, amount: travelers * pricePerPerson, bookingDate: new Date().toISOString(), status: 'confirmed' });
+                const bookings = JSON.parse(localStorage.getItem('dakshin_bookings') || '[]');
+
+                const newBooking = {
+                    id: Date.now(),
+                    userId: user.id,
+                    packageName: selectedPackage,
+                    amount: total,
+                    passengers: passengers,
+                    travelDate: travelDate,
+                    paymentMethod: selectedMethod,
+                    bookingDate: new Date().toISOString(),
+                    status: 'confirmed'
+                };
+
+                bookings.push(newBooking);
                 localStorage.setItem('dakshin_bookings', JSON.stringify(bookings));
-                alert(`✅ Payment Successful!\n\nPackage: ${selectedPackage}\nAmount: ₹${(travelers * pricePerPerson).toLocaleString()}\nPayment Method: ${method.toUpperCase()}\n\nThank you for choosing Dakshin!`);
+                localStorage.removeItem('currentBooking');
                 localStorage.removeItem('selectedPackage');
+
+                alert(`✅ PAYMENT SUCCESSFUL!\n\n📋 Booking Details:\nPackage: ${selectedPackage}\nPassengers: ${passengers}\nTotal: ₹${total.toLocaleString()}\n\nYou can view your bookings by clicking your profile name → "My Bookings"`);
+
                 window.location.href = 'index.html';
-            } else alert('Please fill all payment details');
+            }, 1500);
         }
 
-        window.selectPaymentMethod = selectPaymentMethod;
+        window.selectMethod = selectMethod;
+        window.processPayment = processPayment;
+        window.openTripPlanner = function () {
+            alert("✨ Smart Trip Planner\n\nClick on 'Trip Planner' in the navbar to plan your perfect trip!");
+        };
     </script>
 </body>
 

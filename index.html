@@ -15,13 +15,23 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">✨ Dakshin</a>
+            <a class="navbar-brand logo" href="index.html">
+                <div class="logo-container">
+                    <!-- Circular Logo Image -->
+                    <img src="assets/images/logo.jpg" alt="Dakshin Logo" class="logo-img"
+                        onerror="this.src='assets/images/logo.png'">
+                    <div>
+                        <div class="logo-text">Dakshin</div>
+                        <div class="logo-subtitle">SOUTH INDIA • ENDLESS DISCOVERIES</div>
+                    </div>
+                </div>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon bg-white"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
                     <li class="nav-item"><a class="nav-link" href="tourpackages.html">Tour Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="openTripPlanner()">Trip Planner</a></li>
@@ -37,7 +47,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <video class="hero-video" autoplay loop muted playsinline>
-            <source src="assets/videos/south-india.mp4" type="video/mp4">
+            <source src="assets/videos/bgvid.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -61,7 +71,7 @@
 
             <div class="map-header">
                 <h2 class="section-title">
-                    Explore. Discover. Experienc
+                    Explore. Discover. Experience
                 </h2>
                 <h2 class="section-title">
                     South India

@@ -14,19 +14,30 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">✨ Dakshin</a>
+            <a class="navbar-brand logo" href="index.html">
+                <div class="logo-container">
+                    <!-- Circular Logo Image -->
+                    <img src="assets/images/logo.jpg" alt="Dakshin Logo" class="logo-img"
+                        onerror="this.src='assets/images/logo.png'">
+                    <div>
+                        <div class="logo-text">Dakshin</div>
+                        <div class="logo-subtitle">SOUTH INDIA • ENDLESS DISCOVERIES</div>
+                    </div>
+                </div>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon bg-white"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="destinations.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
                     <li class="nav-item"><a class="nav-link" href="tourpackages.html">Tour Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="openTripPlanner()">Trip Planner</a></li>
                     <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
-                    <li class="nav-item" id="authNavItem"><a class="nav-link" id="authLink" href="login.html">Sign
-                            In</a></li>
+                    <li class="nav-item" id="authNavItem">
+                        <a class="nav-link" id="authLink" href="login.html">Sign In</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -65,9 +76,12 @@
                         data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body" id="modalBody"></div>
-                <div class="modal-footer"><button type="button" class="btn btn-primary" onclick="bookFromModal()">Book
-                        This Package</button><button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Close</button></div>
+                <!-- In the modal footer, update the book button -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="bookFromDestination()">Book This
+                        Package</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -80,6 +94,107 @@
         function updateAuthButton() { const user = JSON.parse(localStorage.getItem('dakshin_current_user')); const authNavItem = document.getElementById('authNavItem'); if (user && authNavItem) { authNavItem.innerHTML = `<div class="dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="fas fa-user-circle"></i> ${user.fullName.split(' ')[0]}</a><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="#" onclick="alert('Profile: ${user.fullName}\\nEmail: ${user.email}')"><i class="fas fa-user"></i> My Profile</a></li><li><a class="dropdown-item" href="#" onclick="viewBookings()"><i class="fas fa-suitcase"></i> My Bookings</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a></li></ul></div>`; } }
         function logoutUser() { localStorage.removeItem('dakshin_current_user'); window.location.href = 'index.html'; }
         document.addEventListener('DOMContentLoaded', () => { updateAuthButton(); });
+        function bookFromDestination() {
+            const dest = window.currentDestination;
+            if (!dest) return;
+
+            // Show passenger count modal
+            const modalHtml = `
+        <div class="modal fade" id="passengerModal" tabindex="-1" data-bs-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">📋 Booking Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-4">
+                            <h6>Destination: ${dest.name}</h6>
+                            <p class="text-muted">${dest.state} | Starting at ₹12,500 per person</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">👥 Number of Passengers</label>
+                            <div class="d-flex align-items-center gap-3">
+                                <button class="btn btn-outline-secondary" onclick="updateDestPassengers(-1)">-</button>
+                                <span class="fs-2 fw-bold" id="destPassengerCount">2</span>
+                                <button class="btn btn-outline-secondary" onclick="updateDestPassengers(1)">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">📅 Travel Date</label>
+                            <input type="date" class="form-control" id="destTravelDate" value="${new Date().toISOString().split('T')[0]}">
+                        </div>
+                        
+                        <div class="alert alert-success mt-3">
+                            <strong>💰 Total Amount:</strong>
+                            <span class="fs-3 fw-bold text-danger" id="destTotalAmount">₹25,000</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="proceedDestPayment()">Proceed to Payment →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+            // Remove existing modal
+            const existing = document.getElementById('passengerModal');
+            if (existing) existing.remove();
+
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+            window.destPassengers = 2;
+            window.destPricePerPerson = 12500;
+            window.currentDestinationData = dest;
+
+            const modal = new bootstrap.Modal(document.getElementById('passengerModal'));
+            modal.show();
+
+            updateDestTotal();
+        }
+
+        function updateDestPassengers(delta) {
+            window.destPassengers = Math.max(1, Math.min(20, window.destPassengers + delta));
+            document.getElementById('destPassengerCount').textContent = window.destPassengers;
+            updateDestTotal();
+        }
+
+        function updateDestTotal() {
+            const total = window.destPassengers * window.destPricePerPerson;
+            document.getElementById('destTotalAmount').innerHTML = `₹${total.toLocaleString()}`;
+        }
+
+        function proceedDestPayment() {
+            const bookingDetails = {
+                packageName: window.currentDestinationData.name,
+                state: window.currentDestinationData.state,
+                passengers: window.destPassengers,
+                pricePerPerson: window.destPricePerPerson,
+                totalAmount: window.destPassengers * window.destPricePerPerson,
+                travelDate: document.getElementById('destTravelDate').value,
+                bookingTime: new Date().toISOString()
+            };
+
+            localStorage.setItem('currentBooking', JSON.stringify(bookingDetails));
+            localStorage.setItem('selectedPackage', window.currentDestinationData.name);
+
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('passengerModal'));
+            modal.hide();
+
+            // Check login
+            const user = localStorage.getItem('dakshin_current_user');
+            if (!user) {
+                sessionStorage.setItem('redirectAfterLogin', 'payment.html');
+                window.location.href = 'login.html';
+            } else {
+                window.location.href = 'payment.html';
+            }
+        }
     </script>
 </body>
 

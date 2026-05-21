@@ -990,3 +990,322 @@ body.dark-mode .modal-header {
     color: #e2e8f0;
     border-bottom-color: #334155;
 }
+
+
+/* Fix for navbar overlapping content - Add this to your style.css */
+
+/* Ensure body has proper padding for fixed navbar */
+body {
+    padding-top: 0;
+    margin: 0;
+}
+
+/* Make navbar sticky but not overlapping */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(12px);
+    padding: 0.8rem 0;
+}
+
+/* Add spacing for all sections that come after navbar */
+section:first-of-type,
+.packages-hero,
+.hero,
+.page-header,
+.map-section,
+.py-5:first-of-type {
+    margin-top: 0;
+    padding-top: 30px;
+}
+
+/* For pages with fixed navbar, add padding to first element after navbar */
+.navbar+* {
+    margin-top: 0;
+}
+
+/* Modal should be above navbar */
+.modal {
+    z-index: 1050;
+}
+
+.modal-backdrop {
+    z-index: 1040;
+}
+
+/* Package Detail Modal - Fix scrolling issues */
+.package-detail-header {
+    background: linear-gradient(135deg, #1a2a3a, #0f1a24);
+    color: white;
+    padding: 25px 30px;
+    border-radius: 24px 24px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.modal-body {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    padding: 25px;
+}
+
+/* Ensure modal content doesn't overlap */
+.modal-dialog {
+    margin: 1.75rem auto;
+}
+
+.modal-content {
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+/* Fix for package cards spacing */
+.package-card {
+    margin-bottom: 30px;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+    .packages-hero {
+        padding: 80px 0 40px;
+    }
+
+    .package-detail-header {
+        padding: 20px;
+    }
+
+    .modal-body {
+        padding: 20px;
+        max-height: calc(100vh - 180px);
+    }
+
+    .info-section {
+        padding: 15px;
+    }
+}
+
+/* ========== CIRCULAR LOGO STYLES ========== */
+
+/* Logo Container */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Circular Logo Image */
+.logo-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, #f7c948, #ff6b35);
+}
+
+/* Logo Hover Effect */
+.logo-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.3);
+    border-color: rgba(255, 107, 53, 0.6);
+}
+
+/* Logo Text */
+.logo-text {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f7c948, #ff6b35);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+/* Logo Subtitle */
+.logo-subtitle {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #94a3b8;
+    letter-spacing: 1px;
+    margin-top: 2px;
+}
+
+/* For Light/Dark navbar text */
+.navbar .logo-subtitle {
+    color: #cbd5e1;
+}
+
+/* Responsive Logo for Mobile */
+@media (max-width: 768px) {
+    .logo-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    .logo-subtitle {
+        display: none;
+    }
+
+    .logo-container {
+        gap: 8px;
+    }
+}
+
+/* Tablet View */
+@media (max-width: 992px) and (min-width: 769px) {
+    .logo-subtitle {
+        font-size: 0.55rem;
+    }
+
+    .logo-text {
+        font-size: 1.3rem;
+    }
+}
+
+
+/* ========== CONSISTENT IMAGE SIZING ========== */
+
+/* Force all card images to same size */
+.card-img-top,
+.destination-card img,
+.state-card img,
+.package-card img,
+.destination-card .card-img,
+.state-card .state-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Carousel images - consistent size */
+.carousel-item img,
+.dest-hero-img,
+.modal-body .carousel-item img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Package detail images */
+.package-img,
+.package-detail-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Hero background image */
+.hero-video,
+.hero-overlay {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Featured images */
+.featured-img,
+.featured-destination img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Destination detail page images */
+.destination-detail-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px;
+}
+
+/* Logo image */
+.logo-img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* State cards on homepage */
+.state-card .state-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Package cards on tour packages page */
+.package-card .package-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Ensure all images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Force consistent aspect ratio for all cards */
+.card,
+.state-card,
+.destination-card,
+.package-card {
+    overflow: hidden;
+}
+
+/* Hover effect with consistent scaling */
+.card:hover img,
+.state-card:hover .state-img,
+.destination-card:hover img,
+.package-card:hover .package-img {
+    transform: scale(1.05);
+    transition: transform 0.4s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+    .card-img-top,
+    .destination-card img,
+    .state-card .state-img,
+    .package-card .package-img {
+        height: 180px;
+    }
+
+    .carousel-item img,
+    .dest-hero-img {
+        height: 250px;
+    }
+
+    .logo-img {
+        width: 36px;
+        height: 36px;
+    }
+}

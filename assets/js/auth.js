@@ -1,4 +1,4 @@
-// Authentication System - Simple Email/Password
+// Authentication System with Working Bookings
 
 const USERS_KEY = 'dakshin_users';
 const CURRENT_USER_KEY = 'dakshin_current_user';
@@ -11,6 +11,11 @@ function initUsers() {
             { id: 1, fullName: "Demo User", username: "demo", email: "demo@dakshin.com", password: "demo123", dob: "1990-01-01", createdAt: new Date().toISOString() }
         ];
         localStorage.setItem(USERS_KEY, JSON.stringify(defaultUsers));
+    }
+
+    // Initialize empty bookings if not exists
+    if (!localStorage.getItem(BOOKINGS_KEY)) {
+        localStorage.setItem(BOOKINGS_KEY, JSON.stringify([]));
     }
 }
 
@@ -72,9 +77,12 @@ function logoutUser() {
 }
 
 // Save booking
-function saveBooking(packageName, amount) {
+function saveBooking(packageName, amount, passengers, travelDate) {
     const user = getCurrentUser();
-    if (!user) return false;
+    if (!user) {
+        console.log("No user logged in");
+        return false;
+    }
 
     const bookings = JSON.parse(localStorage.getItem(BOOKINGS_KEY) || '[]');
     const newBooking = {
@@ -82,11 +90,14 @@ function saveBooking(packageName, amount) {
         userId: user.id,
         packageName: packageName,
         amount: amount,
+        passengers: passengers || 2,
+        travelDate: travelDate || new Date().toISOString().split('T')[0],
         bookingDate: new Date().toISOString(),
         status: 'confirmed'
     };
     bookings.push(newBooking);
     localStorage.setItem(BOOKINGS_KEY, JSON.stringify(bookings));
+    console.log("Booking saved:", newBooking);
     return true;
 }
 
@@ -95,63 +106,78 @@ function getUserBookings() {
     const user = getCurrentUser();
     if (!user) return [];
     const bookings = JSON.parse(localStorage.getItem(BOOKINGS_KEY) || '[]');
-    return bookings.filter(b => b.userId === user.id);
+    const userBookings = bookings.filter(b => b.userId === user.id);
+    console.log("User bookings:", userBookings);
+    return userBookings;
 }
 
-// Update navbar with user info
-function updateNavbarUser() {
-    const user = getCurrentUser();
-    const navLinks = document.querySelector('.navbar-nav');
-    if (!navLinks) return;
+// Display bookings in a nice modal
+function showMyBookings() {
+    const bookings = getUserBookings();
 
-    const existingUserMenu = document.getElementById('userMenuContainer');
-    if (existingUserMenu) existingUserMenu.remove();
-
-    if (user) {
-        const userMenu = document.createElement('li');
-        userMenu.className = 'nav-item dropdown';
-        userMenu.id = 'userMenuContainer';
-        userMenu.innerHTML = `
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                <i class="fas fa-user-circle"></i> ${user.fullName.split(' ')[0]}
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#" onclick="viewProfile()"><i class="fas fa-user"></i> My Profile</a></li>
-                <li><a class="dropdown-item" href="#" onclick="viewBookings()"><i class="fas fa-suitcase"></i> My Bookings</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-            </ul>
-        `;
-        navLinks.appendChild(userMenu);
+    if (bookings.length === 0) {
+        alert("📋 You have no bookings yet.\n\nBook a tour package to get started!");
+        return;
     }
+
+    let message = "📋 MY BOOKINGS\n";
+    message += "═══════════════════════════════════\n\n";
+
+    bookings.forEach((booking, index) => {
+        message += `${index + 1}. ${booking.packageName}\n`;
+        message += `   📅 Travel Date: ${booking.travelDate}\n`;
+        message += `   👥 Passengers: ${booking.passengers}\n`;
+        message += `   💰 Amount: ₹${booking.amount.toLocaleString()}\n`;
+        message += `   ✅ Status: ${booking.status.toUpperCase()}\n`;
+        message += `   🕐 Booked on: ${new Date(booking.bookingDate).toLocaleDateString()}\n`;
+        message += `   💳 Payment: ${booking.paymentMethod ? booking.paymentMethod.toUpperCase() : 'Card'}\n`;
+        message += `\n`;
+    });
+
+    alert(message);
 }
 
 // View profile
 function viewProfile() {
     const user = getCurrentUser();
     if (user) {
-        alert(`👤 My Profile\n\nName: ${user.fullName}\nUsername: ${user.username}\nEmail: ${user.email}\nMember since: ${new Date(user.createdAt).toLocaleDateString()}`);
+        alert(`👤 MY PROFILE\n\nName: ${user.fullName}\nUsername: ${user.username}\nEmail: ${user.email}\nMember since: ${new Date(user.createdAt).toLocaleDateString()}`);
     }
 }
 
-// View bookings
-function viewBookings() {
-    const bookings = getUserBookings();
-    if (bookings.length === 0) {
-        alert("📋 You have no bookings yet.\n\nBook a tour package to get started!");
-    } else {
-        let message = "📋 My Bookings:\n\n";
-        bookings.forEach((booking, index) => {
-            message += `${index + 1}. ${booking.packageName}\n   Date: ${new Date(booking.bookingDate).toLocaleDateString()}\n   Amount: ₹${booking.amount}\n   Status: ${booking.status}\n\n`;
-        });
-        alert(message);
+// Update navbar with user info
+function updateNavbarUser() {
+    const user = getCurrentUser();
+    const authNavItem = document.getElementById('authNavItem');
+
+    if (user && authNavItem) {
+        authNavItem.innerHTML = `
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-user-circle"></i> ${user.fullName.split(' ')[0]}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#" onclick="viewProfile()"><i class="fas fa-user"></i> My Profile</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="showMyBookings()"><i class="fas fa-suitcase"></i> My Bookings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        `;
+    } else if (authNavItem) {
+        authNavItem.innerHTML = `<a class="nav-link" id="authLink" href="login.html">Sign In</a>`;
     }
 }
 
-// Initialize on page load
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     initUsers();
-    if (typeof bootstrap !== 'undefined') {
-        updateNavbarUser();
-    }
+    updateNavbarUser();
 });
+
+// Make functions global
+window.viewProfile = viewProfile;
+window.showMyBookings = showMyBookings;
+window.logoutUser = logoutUser;
+window.getUserBookings = getUserBookings;
+window.saveBooking = saveBooking;
