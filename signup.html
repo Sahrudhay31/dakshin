@@ -46,6 +46,11 @@
             color: white;
         }
 
+        .btn-signup:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         .input-group-custom {
             position: relative;
             margin-bottom: 20px;
@@ -57,7 +62,6 @@
             border: 2px solid #e2e8f0;
             border-radius: 16px;
             font-size: 1rem;
-            transition: all 0.3s;
         }
 
         .input-group-custom input:focus {
@@ -80,13 +84,39 @@
             gap: 15px;
         }
 
+        .otp-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .otp-group input {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 1rem;
+            text-align: center;
+            letter-spacing: 5px;
+        }
+
+        .btn-otp {
+            background: #f1f5f9;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 0 20px;
+            font-weight: 600;
+            color: #d41e3c;
+            white-space: nowrap;
+        }
+
         .error-message {
             background: #fee2e2;
             color: #dc2626;
             padding: 12px;
             border-radius: 12px;
             margin-bottom: 20px;
-            font-size: 0.85rem;
             display: none;
         }
 
@@ -96,8 +126,15 @@
             padding: 12px;
             border-radius: 12px;
             margin-bottom: 20px;
-            font-size: 0.85rem;
             display: none;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
         }
 
         .password-strength {
@@ -125,6 +162,7 @@
 
             .signup-card {
                 padding: 30px 25px;
+                margin: 20px;
             }
         }
     </style>
@@ -134,46 +172,286 @@
     <div class="signup-card">
         <div class="logo">✨ Dakshin</div>
         <h3 class="text-center mb-2">Create an Account</h3>
-        <p class="text-center text-muted mb-4">Join us to start your South India adventure</p>
+        <p class="text-center text-muted mb-4">Join us with email verification</p>
+
         <div id="errorMessage" class="error-message"></div>
         <div id="successMessage" class="success-message"></div>
-        <form id="signupForm" onsubmit="handleSignup(event)">
-            <div class="form-row">
-                <div class="input-group-custom"><i class="fas fa-user"></i><input type="text" id="fullName"
-                        placeholder="Full Name *" required></div>
-                <div class="input-group-custom"><i class="fas fa-at"></i><input type="text" id="username"
-                        placeholder="Username *" required></div>
+
+        <!-- Step 1: Signup Form -->
+        <div id="step1" class="step active">
+            <form id="signupForm" onsubmit="sendSignupOTP(event)">
+                <div class="form-row">
+                    <div class="input-group-custom"><i class="fas fa-user"></i><input type="text" id="fullName"
+                            placeholder="Full Name *" required></div>
+                    <div class="input-group-custom"><i class="fas fa-at"></i><input type="text" id="username"
+                            placeholder="Username *" required></div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group-custom"><i class="fas fa-envelope"></i><input type="email" id="email"
+                            placeholder="Email Address *" required></div>
+                    <div class="input-group-custom"><i class="fas fa-calendar-alt"></i><input type="date" id="dob">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group-custom"><i class="fas fa-lock"></i><input type="password" id="password"
+                            placeholder="Password *" required onkeyup="checkPasswordStrength()"></div>
+                    <div class="input-group-custom"><i class="fas fa-check-circle"></i><input type="password"
+                            id="confirmPassword" placeholder="Confirm Password *" required></div>
+                </div>
+                <div id="passwordStrength" class="password-strength"></div>
+                <div class="d-flex align-items-center gap-2 mb-4 mt-3">
+                    <input type="checkbox" id="termsCheckbox" required> <label class="small">I agree to the <a href="#"
+                            class="text-danger" onclick="showTerms(event)">Terms of Service</a></label>
+                </div>
+                <button type="submit" class="btn-signup" id="signupBtn"><i class="fas fa-user-plus me-2"></i>Sign Up &
+                    Verify Email</button>
+            </form>
+            <div class="text-center mt-4 pt-3 border-top">
+                <p class="small">Already have an account? <a href="login.html"
+                        class="text-danger text-decoration-none fw-bold">Log In</a></p>
             </div>
-            <div class="form-row">
-                <div class="input-group-custom"><i class="fas fa-envelope"></i><input type="email" id="email"
-                        placeholder="Email Address *" required></div>
-                <div class="input-group-custom"><i class="fas fa-calendar-alt"></i><input type="date" id="dob"
-                        placeholder="Date of Birth"></div>
+        </div>
+
+        <!-- Step 2: OTP Verification -->
+        <div id="step2" class="step">
+            <p class="text-center mb-3">Enter OTP sent to <strong id="otpEmailDisplay"></strong></p>
+            <div class="otp-group">
+                <input type="text" id="otpCode" placeholder="6-digit OTP" maxlength="6" autocomplete="off">
+                <button type="button" class="btn-otp" id="resendOtpBtn" onclick="resendSignupOTP()">Resend</button>
             </div>
-            <div class="form-row">
-                <div class="input-group-custom"><i class="fas fa-lock"></i><input type="password" id="password"
-                        placeholder="Password *" required onkeyup="checkPasswordStrength()"></div>
-                <div class="input-group-custom"><i class="fas fa-check-circle"></i><input type="password"
-                        id="confirmPassword" placeholder="Confirm Password *" required></div>
+            <button class="btn-signup mt-2" onclick="verifySignupOTP()">
+                <i class="fas fa-check-circle me-2"></i>Verify & Complete Signup
+            </button>
+            <div class="resend-text text-center mt-3">
+                <a onclick="backToSignup()" style="cursor: pointer; color: #d41e3c;">← Edit information</a>
             </div>
-            <div id="passwordStrength" class="password-strength"></div>
-            <div class="d-flex align-items-center gap-2 mb-4 mt-3">
-                <input type="checkbox" id="termsCheckbox" required> <label class="small">I agree to the <a href="#"
-                        class="text-danger" onclick="showTerms(event)">Terms of Service</a> and <a href="#"
-                        class="text-danger" onclick="showPrivacy(event)">Privacy Policy</a></label>
-            </div>
-            <button type="submit" class="btn-signup"><i class="fas fa-user-plus me-2"></i>Sign Up</button>
-        </form>
-        <div class="text-center mt-4 pt-3 border-top">
-            <p class="small">Already have an account? <a href="login.html"
-                    class="text-danger text-decoration-none fw-bold">Log In</a></p>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="assets/js/config.js"></script>
     <script src="assets/js/auth.js"></script>
     <script>
-        function checkPasswordStrength() { const pwd = document.getElementById('password').value; const div = document.getElementById('passwordStrength'); if (!pwd.length) { div.innerHTML = ''; return; } let s = 0; if (pwd.length >= 8) s++; if (pwd.match(/[a-z]/)) s++; if (pwd.match(/[A-Z]/)) s++; if (pwd.match(/[0-9]/)) s++; if (pwd.match(/[^a-zA-Z0-9]/)) s++; if (s <= 2) { div.innerHTML = '🔴 Weak password'; div.className = 'password-strength strength-weak'; } else if (s <= 4) { div.innerHTML = '🟡 Medium password'; div.className = 'password-strength strength-medium'; } else { div.innerHTML = '🟢 Strong password'; div.className = 'password-strength strength-strong'; } }
-        function showTerms(e) { e.preventDefault(); alert("📜 Terms of Service:\n\n1. All bookings are subject to availability.\n2. Cancellation policy applies as per package.\n3. Prices may vary based on season.\n4. Valid ID proof required at check-in."); }
-        function showPrivacy(e) { e.preventDefault(); alert("🔒 Privacy Policy:\n\nWe value your privacy. Your personal data is secure and never shared with third parties without consent."); }
+        let signupOTP = null;
+        let signupEmail = null;
+        let pendingUserData = null;
+        let otpTimer = null;
+        let timeLeft = 60;
+
+        emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
+
+        function sendSignupOTP(event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const dob = document.getElementById('dob').value;
+            const termsChecked = document.getElementById('termsCheckbox').checked;
+
+            if (!fullName || !username || !email || !password) {
+                showError('Please fill in all required fields');
+                return;
+            }
+            if (password !== confirmPassword) {
+                showError('Passwords do not match');
+                return;
+            }
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters');
+                return;
+            }
+            if (!termsChecked) {
+                showError('Please agree to the Terms of Service');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('Please enter a valid email address');
+                return;
+            }
+
+            const users = getUsers();
+            if (users.some(u => u.username === username)) {
+                showError('Username already taken');
+                return;
+            }
+            if (users.some(u => u.email === email)) {
+                showError('Email already registered');
+                return;
+            }
+
+            pendingUserData = { fullName, username, email, password, dob };
+            signupEmail = email;
+            signupOTP = Math.floor(100000 + Math.random() * 900000).toString();
+
+            const btn = document.getElementById('signupBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending Verification...';
+
+            const templateParams = {
+                to_email: email,
+                otp: signupOTP,
+                name: fullName,
+                from_name: 'Dakshin Travel'
+            };
+
+            emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.SIGNUP_TEMPLATE_ID, templateParams)
+                .then(function (response) {
+                    showSuccess(`Verification OTP sent to ${email}`);
+                    document.getElementById('step1').classList.remove('active');
+                    document.getElementById('step2').classList.add('active');
+                    document.getElementById('otpEmailDisplay').textContent = email;
+                    startSignupTimer();
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-user-plus me-2"></i>Sign Up & Verify Email';
+                })
+                .catch(function (error) {
+                    console.error('EmailJS Error:', error);
+
+                    if (CONFIG.IS_DEMO_MODE) {
+                        alert(`[DEMO MODE] Verification OTP for ${email} is: ${signupOTP}`);
+                        document.getElementById('step1').classList.remove('active');
+                        document.getElementById('step2').classList.add('active');
+                        document.getElementById('otpEmailDisplay').textContent = email;
+                        startSignupTimer();
+                    } else {
+                        showError('Failed to send verification. Please try again.');
+                    }
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-user-plus me-2"></i>Sign Up & Verify Email';
+                });
+        }
+
+        function startSignupTimer() {
+            timeLeft = 60;
+            const resendBtn = document.getElementById('resendOtpBtn');
+            resendBtn.disabled = true;
+
+            if (otpTimer) clearInterval(otpTimer);
+
+            otpTimer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(otpTimer);
+                    resendBtn.disabled = false;
+                    resendBtn.innerHTML = 'Resend';
+                } else {
+                    resendBtn.innerHTML = `Resend (${timeLeft}s)`;
+                }
+            }, 1000);
+        }
+
+        function resendSignupOTP() {
+            if (!signupEmail) return;
+
+            signupOTP = Math.floor(100000 + Math.random() * 900000).toString();
+
+            const templateParams = {
+                to_email: signupEmail,
+                otp: signupOTP,
+                name: pendingUserData?.fullName || 'User',
+                from_name: 'Dakshin Travel'
+            };
+
+            const btn = document.getElementById('resendOtpBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+            emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.SIGNUP_TEMPLATE_ID, templateParams)
+                .then(function () {
+                    showSuccess(`New OTP sent to ${signupEmail}`);
+                    clearInterval(otpTimer);
+                    startSignupTimer();
+                })
+                .catch(function () {
+                    if (CONFIG.IS_DEMO_MODE) {
+                        alert(`[DEMO MODE] New OTP: ${signupOTP}`);
+                        clearInterval(otpTimer);
+                        startSignupTimer();
+                    } else {
+                        showError('Failed to resend OTP');
+                        btn.innerHTML = 'Resend';
+                    }
+                });
+        }
+
+        function verifySignupOTP() {
+            const enteredOTP = document.getElementById('otpCode').value;
+
+            if (!enteredOTP) {
+                showError('Please enter the OTP');
+                return;
+            }
+
+            if (enteredOTP === signupOTP) {
+                const result = registerUser(
+                    pendingUserData.fullName,
+                    pendingUserData.username,
+                    pendingUserData.email,
+                    pendingUserData.password,
+                    pendingUserData.dob
+                );
+
+                if (result.success) {
+                    showSuccess('Email verified! Account created successfully. Redirecting...');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                } else {
+                    showError(result.message);
+                }
+            } else {
+                showError('Invalid OTP. Please try again.');
+            }
+        }
+
+        function backToSignup() {
+            clearInterval(otpTimer);
+            signupOTP = null;
+            signupEmail = null;
+            pendingUserData = null;
+            document.getElementById('otpCode').value = '';
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+        }
+
+        function checkPasswordStrength() {
+            const pwd = document.getElementById('password').value;
+            const div = document.getElementById('passwordStrength');
+            if (!pwd.length) { div.innerHTML = ''; return; }
+            let s = 0;
+            if (pwd.length >= 8) s++;
+            if (pwd.match(/[a-z]/)) s++;
+            if (pwd.match(/[A-Z]/)) s++;
+            if (pwd.match(/[0-9]/)) s++;
+            if (pwd.match(/[^a-zA-Z0-9]/)) s++;
+            if (s <= 2) { div.innerHTML = '🔴 Weak password'; div.className = 'password-strength strength-weak'; }
+            else if (s <= 4) { div.innerHTML = '🟡 Medium password'; div.className = 'password-strength strength-medium'; }
+            else { div.innerHTML = '🟢 Strong password'; div.className = 'password-strength strength-strong'; }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            if (successDiv) successDiv.style.display = 'none';
+            setTimeout(() => { errorDiv.style.display = 'none'; }, 4000);
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            const errorDiv = document.getElementById('errorMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            if (errorDiv) errorDiv.style.display = 'none';
+            setTimeout(() => { successDiv.style.display = 'none'; }, 3000);
+        }
+
+        function showTerms(e) { e.preventDefault(); alert("📜 Terms of Service:\n\n1. All bookings subject to availability.\n2. Email verification required.\n3. OTP valid for 60 seconds.\n4. Valid ID required at check-in."); }
     </script>
 </body>
 

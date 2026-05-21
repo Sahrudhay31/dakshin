@@ -85,3 +85,119 @@ function requireAuth(redirectUrl) {
 }
 
 document.addEventListener('DOMContentLoaded', initUsers);
+
+// Add these functions to assets/js/auth.js
+
+// Resend OTP function
+function resendOTP(email, type) {
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // Store OTP temporarily
+    if (type === 'login') {
+        sessionStorage.setItem('loginOTP_' + email, otp);
+        sessionStorage.setItem('loginOTPTime_' + email, Date.now().toString());
+    } else {
+        sessionStorage.setItem('signupOTP_' + email, otp);
+        sessionStorage.setItem('signupOTPTime_' + email, Date.now().toString());
+    }
+
+    return otp;
+}
+
+// Verify OTP
+function verifyOTP(email, enteredOTP, type) {
+    const storedOTP = sessionStorage.getItem(`${type}OTP_${email}`);
+    const storedTime = sessionStorage.getItem(`${type}OTPTime_${email}`);
+
+    if (!storedOTP || !storedTime) return false;
+
+    // Check if OTP expired (60 seconds)
+    const timeDiff = Date.now() - parseInt(storedTime);
+    if (timeDiff > 60000) {
+        sessionStorage.removeItem(`${type}OTP_${email}`);
+        sessionStorage.removeItem(`${type}OTPTime_${email}`);
+        return false;
+    }
+
+    if (storedOTP === enteredOTP) {
+        sessionStorage.removeItem(`${type}OTP_${email}`);
+        sessionStorage.removeItem(`${type}OTPTime_${email}`);
+        return true;
+    }
+
+    return false;
+}
+
+// Check if email is verified (for signup)
+function isEmailVerified(email) {
+    return sessionStorage.getItem(`verified_${email}`) === 'true';
+}
+
+function markEmailVerified(email) {
+    sessionStorage.setItem(`verified_${email}`, 'true');
+}
+
+// Add to the end of assets/js/auth.js
+
+// Get current user
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('dakshin_current_user'));
+}
+
+// Check login status
+function isLoggedIn() {
+    return localStorage.getItem('dakshin_current_user') !== null;
+}
+
+// Logout
+function logout() {
+    localStorage.removeItem('dakshin_current_user');
+    window.location.href = 'index.html';
+}
+
+// Update navbar with user info (call this on each page)
+function updateNavbarUser() {
+    const user = getCurrentUser();
+    const navLinks = document.querySelector('.navbar-nav');
+    if (user && navLinks) {
+        const existingUserMenu = document.getElementById('userMenuContainer');
+        if (existingUserMenu) existingUserMenu.remove();
+
+        const userMenu = document.createElement('li');
+        userMenu.className = 'nav-item dropdown';
+        userMenu.id = 'userMenuContainer';
+        userMenu.innerHTML = `
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                <i class="fas fa-user-circle"></i> ${user.fullName.split(' ')[0]}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a class="dropdown-item" href="#" onclick="viewBookings()"><i class="fas fa-suitcase"></i> My Bookings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        `;
+        navLinks.appendChild(userMenu);
+    }
+}
+
+// View bookings
+function viewBookings() {
+    const bookings = JSON.parse(localStorage.getItem('dakshin_bookings') || '[]');
+    if (bookings.length === 0) {
+        alert("📋 You have no bookings yet.\n\nBook a tour package to get started!");
+    } else {
+        let message = "📋 Your Bookings:\n\n";
+        bookings.forEach((booking, index) => {
+            message += `${index + 1}. ${booking.packageName}\n   Date: ${new Date(booking.bookingDate).toLocaleDateString()}\n   Amount: ₹${booking.amount}\n\n`;
+        });
+        alert(message);
+    }
+}
+
+// Call this when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof bootstrap !== 'undefined') {
+        updateNavbarUser();
+    }
+});
