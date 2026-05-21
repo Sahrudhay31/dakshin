@@ -209,7 +209,6 @@
         let otpTimer = null;
         let timeLeft = 60;
 
-        // Initialize EmailJS
         emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
 
         function sendOTP(event) {
@@ -259,15 +258,6 @@
                     showError('Failed to send OTP. Please try again.');
                     btn.disabled = false;
                     btn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send OTP';
-
-                    // DEMO MODE FALLBACK
-                    if (CONFIG.IS_DEMO_MODE) {
-                        alert(`[DEMO MODE] OTP for ${email} is: ${generatedOTP}`);
-                        document.getElementById('step1').classList.remove('active');
-                        document.getElementById('step2').classList.add('active');
-                        document.getElementById('otpEmailDisplay').textContent = email;
-                        startTimer();
-                    }
                 });
         }
 
@@ -311,14 +301,8 @@
                     startTimer();
                 })
                 .catch(function () {
-                    if (CONFIG.IS_DEMO_MODE) {
-                        alert(`[DEMO MODE] New OTP: ${generatedOTP}`);
-                        clearInterval(otpTimer);
-                        startTimer();
-                    } else {
-                        showError('Failed to resend OTP. Please try again.');
-                        btn.innerHTML = 'Resend';
-                    }
+                    showError('Failed to resend OTP. Please try again.');
+                    btn.innerHTML = 'Resend';
                 });
         }
 

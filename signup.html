@@ -177,7 +177,6 @@
         <div id="errorMessage" class="error-message"></div>
         <div id="successMessage" class="success-message"></div>
 
-        <!-- Step 1: Signup Form -->
         <div id="step1" class="step active">
             <form id="signupForm" onsubmit="sendSignupOTP(event)">
                 <div class="form-row">
@@ -212,7 +211,6 @@
             </div>
         </div>
 
-        <!-- Step 2: OTP Verification -->
         <div id="step2" class="step">
             <p class="text-center mb-3">Enter OTP sent to <strong id="otpEmailDisplay"></strong></p>
             <div class="otp-group">
@@ -222,7 +220,7 @@
             <button class="btn-signup mt-2" onclick="verifySignupOTP()">
                 <i class="fas fa-check-circle me-2"></i>Verify & Complete Signup
             </button>
-            <div class="resend-text text-center mt-3">
+            <div class="text-center mt-3">
                 <a onclick="backToSignup()" style="cursor: pointer; color: #d41e3c;">← Edit information</a>
             </div>
         </div>
@@ -311,16 +309,7 @@
                 })
                 .catch(function (error) {
                     console.error('EmailJS Error:', error);
-
-                    if (CONFIG.IS_DEMO_MODE) {
-                        alert(`[DEMO MODE] Verification OTP for ${email} is: ${signupOTP}`);
-                        document.getElementById('step1').classList.remove('active');
-                        document.getElementById('step2').classList.add('active');
-                        document.getElementById('otpEmailDisplay').textContent = email;
-                        startSignupTimer();
-                    } else {
-                        showError('Failed to send verification. Please try again.');
-                    }
+                    showError('Failed to send verification. Please try again.');
                     btn.disabled = false;
                     btn.innerHTML = '<i class="fas fa-user-plus me-2"></i>Sign Up & Verify Email';
                 });
@@ -367,14 +356,8 @@
                     startSignupTimer();
                 })
                 .catch(function () {
-                    if (CONFIG.IS_DEMO_MODE) {
-                        alert(`[DEMO MODE] New OTP: ${signupOTP}`);
-                        clearInterval(otpTimer);
-                        startSignupTimer();
-                    } else {
-                        showError('Failed to resend OTP');
-                        btn.innerHTML = 'Resend';
-                    }
+                    showError('Failed to resend OTP. Please try again.');
+                    btn.innerHTML = 'Resend';
                 });
         }
 

@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a2a3a, #0f1a24);
             min-height: 100vh;
             padding: 100px 20px 60px;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         .payment-card {
@@ -93,6 +93,7 @@
         @media (max-width: 768px) {
             .payment-card {
                 padding: 25px;
+                margin: 20px;
             }
         }
     </style>
@@ -104,6 +105,7 @@
             <h3 class="mt-2">Secure Payment Portal</h3>
             <p class="text-muted">Complete your booking with confidence</p>
         </div>
+
         <div class="booking-summary">
             <h5 class="mb-3">📋 Booking Summary</h5>
             <div class="summary-row"><span>Package:</span><strong id="packageName">-</strong></div>
@@ -111,6 +113,7 @@
             <div class="summary-row"><span>Price per Person:</span><strong>₹12,500</strong></div>
             <div class="total-amount"><span>Total Amount:</span><strong id="totalAmount">₹25,000</strong></div>
         </div>
+
         <h6 class="mb-3">Select Payment Method</h6>
         <div class="payment-method selected" data-method="credit" onclick="selectPaymentMethod('credit')"><i
                 class="fab fa-cc-visa fa-2x"></i><i class="fab fa-cc-mastercard fa-2x"></i><span><strong>Credit / Debit
@@ -120,12 +123,15 @@
                     PhonePe</strong></span></div>
         <div class="payment-method" data-method="netbanking" onclick="selectPaymentMethod('netbanking')"><i
                 class="fas fa-university fa-2x text-primary"></i><span><strong>Net Banking</strong></span></div>
+
         <div id="cardDetails" class="card-details active">
-            <h6>Card Details</h6><input type="text" class="form-control mb-2" id="cardNumber" placeholder="Card Number">
+            <h6>Card Details</h6>
+            <input type="text" class="form-control mb-2" id="cardNumber" placeholder="Card Number">
             <div class="row">
                 <div class="col-6"><input type="text" class="form-control" id="expiry" placeholder="MM/YY"></div>
                 <div class="col-6"><input type="password" class="form-control" id="cvv" placeholder="CVV"></div>
-            </div><input type="text" class="form-control mt-2" id="cardName" placeholder="Cardholder Name">
+            </div>
+            <input type="text" class="form-control mt-2" id="cardName" placeholder="Cardholder Name">
         </div>
         <div id="upiDetails" class="card-details">
             <h6>UPI Payment</h6><input type="text" class="form-control" id="upiId" placeholder="yourname@okhdfcbank">
@@ -141,21 +147,65 @@
                 <option>Kotak Mahindra Bank</option>
             </select>
         </div>
+
         <button class="btn-pay" onclick="processPayment()"><i class="fas fa-rupee-sign me-2"></i>Pay Now & Confirm
             Booking</button>
         <div class="text-center mt-3"><small class="text-muted"><i class="fas fa-shield-alt"></i> 256-bit SSL Secure |
                 PCI Compliant</small></div>
     </div>
+
     <script src="assets/js/auth.js"></script>
     <script>
-        (function () { if (!localStorage.getItem('dakshin_current_user')) { window.location.href = 'login.html?redirect=payment.html'; return; } const user = JSON.parse(localStorage.getItem('dakshin_current_user')); if (user) document.querySelector('.payment-card').insertAdjacentHTML('afterbegin', `<div class="alert alert-success mb-3"><i class="fas fa-user-check"></i> Welcome back, ${user.fullName}!</div>`); })();
+        // Check authentication
+        (function () {
+            if (!localStorage.getItem('dakshin_current_user')) {
+                window.location.href = 'login.html?redirect=payment.html';
+                return;
+            }
+            const user = JSON.parse(localStorage.getItem('dakshin_current_user'));
+            if (user) {
+                document.querySelector('.payment-card').insertAdjacentHTML('afterbegin', `<div class="alert alert-success mb-3"><i class="fas fa-user-check"></i> Welcome back, ${user.fullName}!</div>`);
+            }
+        })();
+
         let selectedPackage = localStorage.getItem('selectedPackage') || 'South India Tour Package';
         document.getElementById('packageName').textContent = selectedPackage;
         let travelers = 2, pricePerPerson = 12500;
         function updateTotal() { document.getElementById('totalAmount').innerHTML = `₹${(travelers * pricePerPerson).toLocaleString()}`; }
         updateTotal();
-        function selectPaymentMethod(method) { document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected')); document.querySelector(`.payment-method[data-method="${method}"]`).classList.add('selected'); document.getElementById('cardDetails').classList.remove('active'); document.getElementById('upiDetails').classList.remove('active'); document.getElementById('netbankingDetails').classList.remove('active'); if (method === 'credit') document.getElementById('cardDetails').classList.add('active'); else if (method === 'upi') document.getElementById('upiDetails').classList.add('active'); else if (method === 'netbanking') document.getElementById('netbankingDetails').classList.add('active'); }
-        function processPayment() { const method = document.querySelector('.payment-method.selected').dataset.method; let isValid = true; if (method === 'credit') { if (!document.getElementById('cardNumber').value || !document.getElementById('expiry').value || !document.getElementById('cvv').value) isValid = false; } else if (method === 'upi') { if (!document.getElementById('upiId').value || !document.getElementById('upiId').value.includes('@')) isValid = false; } else if (method === 'netbanking') { if (!document.getElementById('bankSelect').value) isValid = false; } if (isValid) { const bookings = JSON.parse(localStorage.getItem('dakshin_bookings') || '[]'); bookings.push({ id: Date.now(), packageName: selectedPackage, amount: travelers * pricePerPerson, date: new Date().toISOString() }); localStorage.setItem('dakshin_bookings', JSON.stringify(bookings)); alert(`✅ Payment Successful!\n\nPackage: ${selectedPackage}\nAmount: ₹${(travelers * pricePerPerson).toLocaleString()}\nPayment Method: ${method.toUpperCase()}\n\nBooking confirmation sent to your email.\nThank you for choosing Dakshin!`); localStorage.removeItem('selectedPackage'); window.location.href = 'index.html'; } else alert('Please fill all payment details'); }
+
+        function selectPaymentMethod(method) {
+            document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
+            document.querySelector(`.payment-method[data-method="${method}"]`).classList.add('selected');
+            document.getElementById('cardDetails').classList.remove('active');
+            document.getElementById('upiDetails').classList.remove('active');
+            document.getElementById('netbankingDetails').classList.remove('active');
+            if (method === 'credit') document.getElementById('cardDetails').classList.add('active');
+            else if (method === 'upi') document.getElementById('upiDetails').classList.add('active');
+            else if (method === 'netbanking') document.getElementById('netbankingDetails').classList.add('active');
+        }
+
+        function processPayment() {
+            const method = document.querySelector('.payment-method.selected').dataset.method;
+            let isValid = true;
+            if (method === 'credit') {
+                if (!document.getElementById('cardNumber').value || !document.getElementById('expiry').value || !document.getElementById('cvv').value) isValid = false;
+            } else if (method === 'upi') {
+                if (!document.getElementById('upiId').value || !document.getElementById('upiId').value.includes('@')) isValid = false;
+            } else if (method === 'netbanking') {
+                if (!document.getElementById('bankSelect').value) isValid = false;
+            }
+            if (isValid) {
+                const bookings = JSON.parse(localStorage.getItem('dakshin_bookings') || '[]');
+                const user = JSON.parse(localStorage.getItem('dakshin_current_user'));
+                bookings.push({ id: Date.now(), userId: user.id, packageName: selectedPackage, amount: travelers * pricePerPerson, bookingDate: new Date().toISOString(), status: 'confirmed' });
+                localStorage.setItem('dakshin_bookings', JSON.stringify(bookings));
+                alert(`✅ Payment Successful!\n\nPackage: ${selectedPackage}\nAmount: ₹${(travelers * pricePerPerson).toLocaleString()}\nPayment Method: ${method.toUpperCase()}\n\nBooking confirmation sent to your email.\nThank you for choosing Dakshin!`);
+                localStorage.removeItem('selectedPackage');
+                window.location.href = 'index.html';
+            } else alert('Please fill all payment details');
+        }
+
         window.selectPaymentMethod = selectPaymentMethod;
     </script>
 </body>
