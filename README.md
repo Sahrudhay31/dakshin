@@ -9,7 +9,7 @@
 
 ## 🌟 Live Demo
 
-🔗 **Live Website:** [https://your-username.github.io/dakshin-tourism](https://your-username.github.io/dakshin-tourism)
+🔗 **Live Website:** [https://your-username.github.io/dakshin-tourism](https://sahrudhay31.github.io/dakshin)
 
 ---
 
