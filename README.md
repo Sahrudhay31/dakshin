@@ -265,7 +265,7 @@ php -S localhost:8000
 ## Signup Page
 <img width="1920" height="821" alt="image" src="https://github.com/user-attachments/assets/de1dcd51-d2db-44ee-b3dd-f87bbd84a4dc" />
 
-## About Us Pge
+## About Us Page
 <img width="1920" height="977" alt="image" src="https://github.com/user-attachments/assets/82c16a32-3d12-43fd-b25a-3ee5d6c96ad8" />
 <img width="1920" height="977" alt="image" src="https://github.com/user-attachments/assets/83c5a7c7-2cd2-40b9-85b0-b8233cf9bbad" />
 
