@@ -135,7 +135,7 @@ dakshin/ <br>
 | Aryan Gopishetty | Frontend  & UI Design | Destination modals, image carousels, search/filter system, payment page UI, responsive design |
 | Rohan D | Backend  & Database & page designs | Authentication system, booking management, localStorage implementation, payment processing logic and animations |
 | Kowshik D | Frontend & UI Design | Color scheme, logo design, destination content, about us page, FAQ page, tourpackages page |
-=======
+
 ### Contribution Summary Table
 
 | Team Member | Percentage | Role | Key Deliverables |
@@ -153,13 +153,13 @@ dakshin/ <br>
 | Interactive India Map | Sahrudhay |
 | Homepage Hero Section | Sahrudhay |
 | Trip Planner Wizard | Sahrudhay | 
-| Responsive Layout | Sahrudhay | Kowshik
+| Responsive Layout | Sahrudhay | Kowshik |
 | Destinations Grid | Aryan |
 | Search & Filter | Aryan |
 | Image Carousel | Aryan |
 | Destination Modal | Aryan |
 | Payment Page UI | Aryan | Rohan
-| CSS Styling | Aryan | Rohan | Kowshik | Sahrudhay
+| CSS Styling | Aryan | Rohan | Kowshik | Sahrudhay |
 | User Registration | Rohan |
 | User Login | Rohan |
 | localStorage Setup | Rohan |
@@ -170,7 +170,6 @@ dakshin/ <br>
 | About Us Page | Kowshik |
 | FAQ Page | Kowshik |
 | Footer Design | Kowshik |
->>>>>>> 6b6c4c6 (Updated readme)
 
 ## Destinations Covered
 
