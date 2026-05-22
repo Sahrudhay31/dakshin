@@ -130,10 +130,10 @@ dakshin/ <br>
 
 | Member | Role | Contributions |
 |--------|------|---------------|
-| Sahrudhay | Frontend & UI Design  | Interactive map integration, navbar layout, destinations database, home page, trip planner core logic |
+| Sahrudhay | Frontend & UI Design  | Interactive map integration, navbar layout, destinations, home page, trip planner core logic |
 | Aryan Gopishetty | Frontend  & UI Design | Destination modals, image carousels, search/filter system, payment page UI, responsive design |
-| Rohan Lucky | Backend  & Database & page designs | Authentication system, booking management, localStorage implementation, payment processing logic |
-| Kowshik D | Frontend & UI Design | Color scheme, logo design, destination content, about us page, FAQ page, visual identity |
+| Rohan Lucky | Backend  & Database & page designs | Authentication system, booking management, localStorage implementation, payment processing logic and animations |
+| Kowshik D | Frontend & UI Design | Color scheme, logo design, destination content, about us page, FAQ page, tourpackages page |
 
 ## Destinations Covered
 
