@@ -132,7 +132,7 @@ dakshin/ <br>
 |--------|------|---------------|
 | Sahrudhay | Frontend & UI Design  | Interactive map integration, navbar layout, destinations, home page, trip planner core logic |
 | Aryan Gopishetty | Frontend  & UI Design | Destination modals, image carousels, search/filter system, payment page UI, responsive design |
-| Rohan Lucky | Backend  & Database & page designs | Authentication system, booking management, localStorage implementation, payment processing logic and animations |
+| Rohan D | Backend  & Database & page designs | Authentication system, booking management, localStorage implementation, payment processing logic and animations |
 | Kowshik D | Frontend & UI Design | Color scheme, logo design, destination content, about us page, FAQ page, tourpackages page |
 
 ## Destinations Covered
@@ -236,7 +236,6 @@ php -S localhost:8000
 
 
 # Credits
-- Credits
 - SimpleMaps for interactive map library
 - Bootstrap for responsive framework
 - Font Awesome for icons
