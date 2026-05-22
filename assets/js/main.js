@@ -307,7 +307,7 @@ const destinationsDB = [
     desc: "Royal Palace",
     category: "temple",
     img: "assets/images/mysore.jpg",  // ORIGINAL COVER IMAGE (KEEP)
-    images: ["assets/images/MYSOREPALACE 1.jpg", "assets/images/MYSOREPALACE 2.jpg", "assets/images/MYSOREPALACE 3.JPG"], // NEW CAROUSEL IMAGES
+    images: ["assets/images/MYSORE PALACE 1.jpg", "assets/images/MYSORE PALACE 2.jpg", "assets/images/MYSORE PALACE 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "One of the most beautiful royal palaces in India.",
     highlights: ["🏰 Palace tour", "✨ Light show", "🏔️ Chamundi Hills"],
     nearby: [
