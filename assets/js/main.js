@@ -328,7 +328,7 @@ const destinationsDB = [
     desc: "Wildlife Park",
     category: "wildlife",
     img: "assets/images/bandipur.jpg",  // ORIGINAL COVER IMAGE (KEEP)
-    images: ["assets/images/BANDIPUR 1.jpg", "assets/images/BANDIPUR 2.jpg", "assets/images/BANDIPUR 3.jpg"], // NEW CAROUSEL IMAGES
+    images: ["assets/images/BANDIPUR.jpeg", "assets/images/BANDIPUR 2.jpg", "assets/images/BANDIPUR 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "One of the best tiger reserves in India.",
     highlights: ["🚙 Jeep safari", "🐅 Wildlife spotting", "🦜 Bird watching"],
     nearby: [
@@ -349,7 +349,7 @@ const destinationsDB = [
     desc: "Ancient Temples",
     category: "temple",
     img: "assets/images/badami.jpg",  // ORIGINAL COVER IMAGE (KEEP)
-    images: ["assets/images/BADAMI CAVES1.jpg", "assets/images/BADAMI CAVES2.jpg", "assets/images/BADAMI CAVES3.jpg"], // NEW CAROUSEL IMAGES
+    images: ["assets/images/BADAMI CAVES 1.jpg", "assets/images/BADAMI CAVES 2.jpg", "assets/images/BADAMI CAVES 3.jpg"], // NEW CAROUSEL IMAGES
     overview: "Famous rock-cut cave temples from 6th century.",
     highlights: ["🕋 Cave temples", "🏛️ Bhutanatha Temple", "📜 Archaeological Museum"],
     nearby: [

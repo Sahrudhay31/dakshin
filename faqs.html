@@ -250,6 +250,99 @@
                 font-size: 0.95rem;
             }
         }
+
+        /* ========== CIRCULAR LOGO STYLES ========== */
+
+        /* Logo Container */
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Circular Logo Image */
+        .logo-img {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, #f7c948, #ff6b35);
+        }
+
+        /* Logo Hover Effect */
+        .logo-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(255, 107, 53, 0.3);
+            border-color: rgba(255, 107, 53, 0.6);
+        }
+
+        /* Logo Text */
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f7c948, #ff6b35);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        /* Logo Subtitle */
+        .logo-subtitle {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #94a3b8;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* For Light/Dark navbar text */
+        .navbar .logo-subtitle {
+            color: #cbd5e1;
+        }
+
+        /* Responsive Logo for Mobile */
+        @media (max-width: 768px) {
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .logo-subtitle {
+                display: none;
+            }
+
+            .logo-container {
+                gap: 8px;
+            }
+        }
+
+        /* Tablet View */
+        @media (max-width: 992px) and (min-width: 769px) {
+            .logo-subtitle {
+                font-size: 0.55rem;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
+            }
+        }
     </style>
 </head>
 
@@ -259,16 +352,30 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">✨ Dakshin</a>
+            <a class="navbar-brand logo" href="index.html">
+                <div class="logo-container">
+                    <!-- Circular Logo Image -->
+                    <img src="assets/images/logo.jpg" alt="Dakshin Logo" class="logo-img"
+                        onerror="this.src='assets/images/logo.png'">
+                    <div>
+                        <div class="logo-text">Dakshin</div>
+                        <div class="logo-subtitle">SOUTH INDIA • ENDLESS DISCOVERIES</div>
+                    </div>
+                </div>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon bg-white"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
                     <li class="nav-item"><a class="nav-link" href="tourpackages.html">Tour Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="openTripPlanner()">Trip Planner</a></li>
                     <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
+                    <li class="nav-item" id="authNavItem">
+                        <a class="nav-link" id="authLink" href="login.html">Sign In</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -572,13 +679,224 @@
 
     <!-- FOOTER -->
 
-    <footer>
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Main Footer Grid -->
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-column">
+                    <div class="footer-logo"> Dakshin</div>
+                    <p>South India's Ultimate Travel Guide. Discover breathtaking destinations, curated tour packages,
+                        and Trip planning.</p>
 
-        <p>
-            © 2026 Dakshin | South India's Ultimate Travel Guide
-        </p>
 
+                </div>
+
+                <!-- Quick Links Column -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="tourpackages.html">Tour Packages</a></li>
+                        <li><a href="#" onclick="openTripPlanner()">Trip Planner</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:munnasahrudhay@gmail.com">munnasahrudhay@gmail.com</a></li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:aryangopishetty@gmail.com">aryangopishetty@gmail.com</a></li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:rohanlucky331@gmail.com">rohanlucky331@gmail.com</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:kowshikd@gmail.com">kowshikd@gmail.com</a>
+                        </li>
+                        <li><i class="fas fa-map-marker-alt"></i> Amritapuri, Kerala, India</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>© 2026 Dakshin - All Rights Reserved</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cancellation Policy</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <style>
+        /* Footer Styles */
+        .footer {
+            background: #0a0f1c;
+            color: #94a3b8;
+            padding: 60px 0 30px;
+            margin-top: 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f7c948, #ff6b35);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .footer-column p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-column h4 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h4:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(135deg, #d41e3c, #ff6b35);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b35;
+            padding-left: 5px;
+        }
+
+        .footer-links i {
+            margin-right: 8px;
+            width: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: #ff6b35;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom-links a {
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #ff6b35;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .footer-column h4:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-bottom-links {
+                justify-content: center;
+            }
+        }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
