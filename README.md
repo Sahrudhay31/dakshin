@@ -128,7 +128,6 @@ dakshin/ <br>
 
 ## Team Members and Contributions
 
-<<<<<<< HEAD
 | Member | Role | Contributions |
 |--------|------|---------------|
 | Sahrudhay | Frontend & UI Design  | Interactive map integration, navbar layout, destinations, home page, trip planner core logic |
@@ -159,7 +158,7 @@ dakshin/ <br>
 | Image Carousel | Aryan |
 | Destination Modal | Aryan |
 | Payment Page UI | Aryan | Rohan
-| CSS Styling | Aryan | Rohan | Kowshik | Sahrudhay |
+| CSS Styling | Aryan , Rohan , Kowshik , Sahrudhay |
 | User Registration | Rohan |
 | User Login | Rohan |
 | localStorage Setup | Rohan |
