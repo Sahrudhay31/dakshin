@@ -894,3 +894,97 @@ document.addEventListener('DOMContentLoaded', () => {
     displayDestinations(destinationsDB);
   }
 });
+
+
+// Scroll Reveal Animation
+document.addEventListener('DOMContentLoaded', function () {
+
+  // Add scroll-reveal class to elements
+  const revealElements = document.querySelectorAll('.state-card, .destination-card, .package-card, .mission-card, .team-card, .stat-card, .faq-item');
+  revealElements.forEach(el => {
+    el.classList.add('scroll-reveal');
+  });
+
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.scroll-reveal').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Add hover animation to buttons
+  const buttons = document.querySelectorAll('.btn-primary, .btn-outline-light, .btn-view, .btn-book, .btn-pay');
+  buttons.forEach(btn => {
+    btn.classList.add('btn-pulse');
+  });
+
+  // Add hover lift to cards
+  const cards = document.querySelectorAll('.state-card, .destination-card, .package-card');
+  cards.forEach(card => {
+    card.classList.add('hover-lift');
+  });
+
+  // Navbar scroll effect
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        navbar.style.padding = '0.5rem 0';
+        navbar.style.background = 'rgba(15, 23, 42, 0.98)';
+      } else {
+        navbar.style.padding = '1rem 0';
+      }
+    });
+  }
+
+  // Stagger children animation for grids
+  const grids = document.querySelectorAll('.row, .grid, .footer-grid');
+  grids.forEach(grid => {
+    grid.classList.add('stagger-children');
+  });
+
+  // Parallax effect for hero section
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    });
+  }
+
+  // Animated counter for stats
+  const stats = document.querySelectorAll('.stat-number');
+  stats.forEach(stat => {
+    const target = parseInt(stat.textContent);
+    if (!isNaN(target)) {
+      let current = 0;
+      const increment = target / 50;
+      const updateCounter = () => {
+        if (current < target) {
+          current += increment;
+          stat.textContent = Math.floor(current) + (stat.textContent.includes('+') ? '+' : '');
+          requestAnimationFrame(updateCounter);
+        } else {
+          stat.textContent = target + (stat.textContent.includes('+') ? '+' : '');
+        }
+      };
+
+      const observerCounter = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            updateCounter();
+            observerCounter.unobserve(entry.target);
+          }
+        });
+      });
+      observerCounter.observe(stat);
+    }
+  });
+});
