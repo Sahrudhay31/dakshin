@@ -14,7 +14,7 @@ function renderTourPackages() {
         html += `<div class="col-md-6 col-lg-4"><div class="package-card" onclick="showPackageDetail(${pkg.id})"><div class="package-img" style="background-image: url('${pkg.img}');"><span class="package-badge">⭐ Best Seller</span></div><div class="package-content"><span class="package-duration"><i class="far fa-calendar-alt"></i> ${pkg.duration}</span><h4 class="mt-2">${pkg.name}</h4><p class="text-muted">${pkg.tagline}</p><div class="package-price">₹${pkg.price.toLocaleString()} <small>per person</small></div><ul class="list-unstyled small mb-3"><li><i class="fas fa-check-circle text-success me-2"></i>${pkg.highlights[0]}</li><li><i class="fas fa-check-circle text-success me-2"></i>${pkg.highlights[1]}</li><li><i class="fas fa-check-circle text-success me-2"></i>${pkg.highlights[2]}</li></ul><button class="btn btn-primary w-100">View Details →</button></div></div></div>`;
     });
     grid.innerHTML = html;
-}
+}.
 
 function showPackageDetail(packageId) {
     const pkg = tourPackages.find(p => p.id === packageId);
