@@ -5,7 +5,7 @@
 
 > **Discover the Soul of South India** - A complete tourism platform featuring 30+ destinations, interactive maps, tour packages, and  trip planning.
 
----
+--- Sahrudhay
 
 ## 🌟 Live Demo
 
