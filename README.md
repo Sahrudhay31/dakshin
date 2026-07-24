@@ -251,22 +251,7 @@ dakshin/ <br>
 
 ## Installation and Setup
 
-### Local Development
 
-1. Clone the repository:
-```bash
-git clone https://github.com/Sahrudhay31/dakshin.git
-cd dakshin
-
-# Using Python
-python3 -m http.server 8000
-
-# Or using Node.js
-npx serve .
-
-# Or using PHP
-php -S localhost:8000
-```
 # Deployed in Github pages
 
 # Screenshots
